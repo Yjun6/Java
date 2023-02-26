@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+#Java files
+*.idea
+*.iml
+
 # Object files
 *.o
 *.ko
