@@ -22,9 +22,11 @@ public class ImpersonateLogin {
                 break;
             }
 
-            long password = scan.nextLong();
-            long pwd = 2104;
-            if(password == pwd){
+            String password = scan.nextLine();
+            String pwd = "21040540124";
+            //比较登录密码
+            //equals 相等返回true 否则false
+            if( password.equals(pwd) ){
                 System.out.println("登录成功");
                 break;
             }else{
