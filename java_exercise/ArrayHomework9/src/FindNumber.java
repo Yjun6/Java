@@ -7,7 +7,7 @@
  */
 public class FindNumber {
     public static void main(String[] args) {
-        int[] arr = {3, 5, 6, 5, 4, 7, 6, 8, 7, 3, 4};
+        int[] arr = {3, 5, 6, 5, 4, 7, 6, 8, 7, 3, 4, 8, 0};
         //k 接收只出现一次的数值的下标  没有：-1 有：下标（ >= 0）
         int k = findNumber(arr);
         if(k == -1){
@@ -20,7 +20,7 @@ public class FindNumber {
     public static int findNumber(int[] arr){
         //接收arr中数值出现的次数
         int[] ret = new int[arr.length];
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             //每进入一次for循环，ret数组对应的值增加一次
             ret[i]++;
             for (int j = i + 1; j < arr.length; j++) {
