@@ -38,7 +38,7 @@ public class Main {
                 }
             }
             //满足存在连续三个元素都是奇数的情况
-            if(j == i + 2){
+            if(j == i + 3){
                 return true;
             }
         }
