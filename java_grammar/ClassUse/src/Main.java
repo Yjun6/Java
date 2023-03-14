@@ -15,7 +15,7 @@ class Dog{
 
     //方法
     public void eat() {
-        System.out.println(name + "汪汪汪~");
+        System.out.println(this.name + "汪汪汪~");
     }
 }
 
