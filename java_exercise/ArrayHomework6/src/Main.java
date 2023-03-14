@@ -33,20 +33,22 @@ public class Main {
         //右边终止下标
         int right = array.length - 1;
         while(left < right){
-            //奇数不发生改变
-            while( array[left] % 2 != 0){
+            //奇数不发生改变 有可能全是奇数
+            while( array[left] % 2 != 0 && left < right){
                 left++;
             }
-            //偶数不发生改变
-            while( array[right] % 2 == 0){
+            //偶数不发生改变 有可能全是偶数
+            while( array[right] % 2 == 0 && left < right){
                 right--;
             }
             //奇偶转换
-            int tmp = array[left];
-            array[left] = array[right];
-            array[right] = tmp;
-            right--;
-            left++;
+            if(left < right){
+                int tmp = array[left];
+                array[left] = array[right];
+                array[right] = tmp;
+                right--;
+                left++;
+            }
         }
     }
 }
