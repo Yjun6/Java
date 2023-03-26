@@ -1,5 +1,8 @@
 package User;
 
+import Book.BookList;
+import Function.IFunction;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -9,6 +12,7 @@ package User;
  */
 public class User {
     private String name;
+    public IFunction[] function;//功能数组
 
     public String getName() {
         return name;
@@ -22,7 +26,11 @@ public class User {
         this.name = name;
     }
 
-    public int menu(){
+    public int menu(String name){
         return -1;
+    }
+
+    public void func(int choice, BookList bookList){
+        return;
     }
 }

@@ -1,5 +1,8 @@
 package User;
 
+import Book.BookList;
+import Function.*;
+
 import java.util.Scanner;
 
 /**
@@ -12,14 +15,22 @@ import java.util.Scanner;
 public class Client extends User{
     public Client(String name) {
         super(name);
+        this.function = new IFunction[]{
+                new ExitFunction(),
+                new FindFunction(),
+                new BorrowFunction(),
+                new ReturnFunction(),
+                new ShowFunction()
+        };
     }
-    public int menu(){
+    public int menu(String name){
         System.out.println("*****************");
-        System.out.println("欢迎来到客户系统！");
+        System.out.println("欢迎"+name+"来到客户系统！");
         System.out.println("*****************");
         System.out.println("1.查找图书");
         System.out.println("2.借阅图书");
         System.out.println("3.归还图书");
+        System.out.println("4.显示图书");
         System.out.println("0.退出系统");
         System.out.println("*****************");
 
@@ -28,4 +39,10 @@ public class Client extends User{
         int choice = scanner.nextInt();
         return choice;
     }
+
+    @Override
+    public void func(int choice, BookList bookList) {
+        this.function[choice].work(bookList);
+    }
+
 }

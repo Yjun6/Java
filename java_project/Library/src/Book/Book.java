@@ -12,6 +12,7 @@ public class Book {
     private String author;//作者
     private int price;//价格
     private String publication;//出版社
+    private boolean isBorrowed;//是否被借出
 
     public String getName() {
         return name;
@@ -45,4 +46,29 @@ public class Book {
         this.publication = publication;
     }
 
+    public Book(String name, String author, int price, String publication) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.publication = publication;
+    }
+
+    public boolean getIsBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setIsBorrowed(boolean isBorrowed) {
+        this.isBorrowed = isBorrowed;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", publication='" + publication + '\'' +
+                ( isBorrowed ?"已借出":"未借出")+
+                '}';
+    }
 }
