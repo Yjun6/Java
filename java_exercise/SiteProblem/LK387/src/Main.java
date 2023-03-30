@@ -18,7 +18,7 @@ class Solution {
             ch[i] = s.charAt(i);
         }
 
-        int[] num = new int[32];
+        int[] num = new int[26];
         for(int i = 0; i < s.length();i++){
             (num[ch[i] - 97])++;
         }
