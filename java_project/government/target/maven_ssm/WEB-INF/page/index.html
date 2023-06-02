@@ -1,0 +1,679 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta content="福泉市综合行政执法局" http-equiv="keywords">
+<meta name="description" content="福泉市综合行政执法局">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+
+<title>福泉市综合行政执法局</title>
+
+<link rel="stylesheet" href="css/index.css" type="text/css">
+
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="js/public.js"></script><!-- 菜单js等-->
+<!-- 时间选择js -->
+<script type="text/javascript" src="js/laydate.js"></script>
+
+</head>
+<body>
+<!--头部-->
+<div class="topbox bg">
+	<div class="wid_main fix">
+		<div class="logo l"><img src="images/logo.png" alt="logo" /></div>
+		<!-- 搜索 -->
+		<div class="search_box r bora_5">
+			<form>
+				<div>
+					<input type="text" name="" placeholder="请输入关键词检索">
+					<button type="submit"><img src="images/search.png"></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- top end -->
+
+<!-- 主体内容框 -->
+<div class="contentbox wid_main bora_5">
+	<div class="content">
+
+		<!-- 导航栏部分 -->
+		<div class="top_nav bg bora_5 ovh">
+			<ul class="fix">
+				<li class="cur">
+					<a href="index.html">首 页</a>
+				</li>
+				<li>
+					<a href="newslist.html">执法动态</a>
+				</li>
+				<li>
+					<a href="newslist.html">办事指南</a>
+				</li>
+				<li>
+					<a href="info_public.html">信息公开</a>
+				</li>
+				<li>
+					<a href="newslist.html">通知公告</a>
+				</li>
+				<li>
+					<a href="about.html">机构概况</a>
+				</li>
+				<li>
+					<a href="newslist.html">制度建设</a>
+				</li>
+				<li>
+					<a href="newslist.html">学习普法</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 导航end -->
+
+		<!-- 需要添加的最新通知或公告滚动部分 -->
+		<div class="gonggao bdb_d fix">
+			<div class="txtScroll-top l fix">
+				<div class="l tit"><img src="images/icon_notice.png"><b class="dib vm">信息公告：</b></div>
+				<div class="bd l">
+					<ul class="infoList">
+						<li><a href="news_xq.html">我局顺利组织2019年福泉市第一期渔业安全生产知识培训及应急实操演练</a><span class="date">2019-07-05</span></li>
+						<li><a href="news_xq.html">福泉市综合执法局办公大楼新建地块招标项目开发商承建</a><span class="date">2019-07-05</span></li>
+						<li><a href="news_xq.html">我局顺利组织2019年福泉市第一期渔业安全生产知识培训及应急实操演练我局顺利组织2019年福泉市第</a><span class="date">2019-07-05</span></li>
+						<li><a href="news_xq.html">福泉市综合执法局办公大楼新建地块招标项目开发商承建</a><span class="date">2019-07-05</span></li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+				jQuery(".txtScroll-top").slide({titCell:".hd ul",mainCell:".bd ul",effect:"topLoop",autoPlay:true,vis:1,interTime:4000,});
+			</script>
+
+			<!-- 时间 -->
+			<div class="timebox fc r">
+				<script type="text/javascript" src="js/show_date.js"></script>
+			</div>
+		</div>
+
+		<!-- 重要新闻展示不滚动 -->
+		<div class="gonggao important_news">
+			<div class="tit dib vm"><img src="images/icon_hot.png"><b class="dib vm">要闻动态</b></div>
+			<h1><a href="news_xq.html">福泉市综合行政执法局2019年第三次党员代表会议纪要</a></h1>
+		</div>
+
+		<div class="conbox fix">
+			<!-- 轮播图 -->
+			<div class="news_banner l bora_5">
+                <div class="hd">
+                    <ul>
+                    	<li>1</li>
+                    	<li>2</li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <ul><!--图片新闻 最多4-5个左右li -->
+                    	<li>
+                            <img src="images/pic.jpg" alt="我局认真开展两学一做党员教育工作交流会" />
+                            <h2><a href="news.html">我局认真开展两学一做党员教育工作交流会</a></h2>
+                        </li>
+                        <li>
+                            <img src="images/pic.jpg" alt="我局认真开展两学一做党员教育工作交流会" />
+                            <h2><a href="news.html">我局认真开展两学一做党员教育工作交流会</a></h2>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+                <a class="prev" href="javascript:void(0)"></a>
+                <a class="next" href="javascript:void(0)"></a>
+
+                <script type="text/javascript">
+                jQuery(".news_banner").slide({mainCell:".bd ul",autoPlay:true,effect:"leftLoop",mouseOverStop:false,interTime:5000,});
+                </script>
+            </div>
+
+            <!-- 部分主要入口 -->
+            <div class="about_enter r">
+            	<ul class="fix">
+            		<li><a th:href="@{/about_leader}"><img src="images/icon_leader.png"><span>领导班子</span></a></li>
+            		<li><a th:href="@{/about}"><img src="images/icon_jigou.png"><span>内设机构</span></a></li>
+            		<li><a th:href="@{/about_people}"><img src="images/icon_people.png"><span>执法人员</span></a></li>
+            		<li><a th:href="@{/about_order}"><img src="images/icon_order.png"><span>权责清单</span></a></li>
+            	</ul>
+            	<dl>
+            		<dd><a th:href="@{/contact}"><img src="images/icon_alltel.png"><span>综合行政执法局各办公室电话</span></a></dd>
+            		<dd><a><img src="images/icon_hottel.png"><span>12319综合执法服务热线</span></a></dd>
+            		<dd><a th:href="@{/contact_process}"><img src="images/icon_liucheng.png"><span>综合行政执法审批流程</span></a></dd>
+            	</dl>
+            </div>
+		</div>
+
+		<!-- 执法动态和招标公告部分 -->
+		<div class="conbox">
+			<div class="fix">
+				<div class="slideTxtBox l fix">
+					<div class="hd l">
+						<ul>
+							<li><a href="queryAllZfdt"><i><img src="images/icon_news01.png"></i><b>执法动态</b></a></li>
+							<li><a href="queryNoticeAll"><i><img src="images/icon_news02.png"></i><b>通知公告</b></a></li>
+							<li><a href="queryGgsdAll"><i><img src="images/icon_news03.png"></i><b>公告送达</b></a></li>
+						</ul>
+					</div>
+					<div class="r box">
+						<div class="bd">
+							<ul>
+								<!-- 每个ul最多展示8条数据 -->
+								<li th:each="z:${zfdtbList}">
+									<a th:href="@{zfdtDetail(id=${z.id})}" th:text="${z.title}"></a>
+									<span class="date" th:text="${z.time}"></span>
+								</li>
+							</ul>
+							<ul>
+								<!-- 每个ul最多展示8条数据 -->
+								<li th:each="n:${noticeList}">
+									<a th:href="@{queryNoticeById(id=${n.id})}" th:text="${n.title}"></a>
+									<span class="date" ><span th:text="${n.time}"></span></span>
+								</li>
+							</ul>
+							<ul>
+								<!-- 每个ul最多展示8条数据 -->
+								<li th:each="g:${ggsdList}">
+									<a th:href="@{queryGgsdById(id=${g.id})}" th:text="${g.title}"></a>
+									<span class="date" ><span th:text="${g.time}"></span></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<script type="text/javascript">jQuery(".slideTxtBox").slide({effect:"leftLoop",delayTime:300});</script>
+				</div>
+
+				<!-- 招标公告 -->
+				<div class="tender r">
+					<div class="sy_title bdb_d ovh">
+						<h2 class="l"><img src="images/icon_zhaobiao.png"><b class="fc">招标公告</b></h2>
+						<a href="newslist.html" class="r">查看更多></a>
+					</div>
+					<ul>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局公开招标办公设备的公告</span><i class="red_news">[新]</i></a></li>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局办公大楼新建地块招标项目开发商承建福泉市综合执法局办公大楼新建地块招标项目开发商承建</span><i class="red_news">[新]</i></a></li>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局公开招标办公设备的公告</span></a></li>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局办公大楼新建地块招标项目开发商承建</span></a></li>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局公开招标办公设备的公告</span></a></li>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局办公大楼新建地块招标项目开发商承建</span></a></li>
+						<li><a href="news_xq.html"><b>·</b><span>福泉市综合执法局公开招标办公设备的公告</span></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- 专题轮播 -->
+			<div class="zhuanti_pic">
+                <div class="hd"><!--轮播点 -->
+                    <ul>
+                    	<li></li>
+                    	<li></li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <ul><!--专题图片轮播 -->
+                    	<li>
+                            <a href="news_xq.html"><img src="images/pic01.jpg" /></a>
+                        </li>
+                        <li>
+                            <a href="news_xq.html"><img src="images/pic01.jpg" /></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+                <a class="prev" href="javascript:void(0)"></a>
+                <a class="next" href="javascript:void(0)"></a>
+
+                <script type="text/javascript">
+                jQuery(".zhuanti_pic").slide({mainCell:".bd ul",autoPlay:true,effect:"fade",mouseOverStop:false,interTime:3000,});
+                </script>
+            </div>
+		</div>	
+
+		<!-- 双公示 -->
+		<div class="conbox">
+			<div class="public_list">
+				<div class="hd sy_title fix">
+					<h2 class="l"><img src="images/icon_gongshi.png"><b class="fc">双公示</b></h2>
+					<ul class="l">
+						<li><a href="info_public.html">行政许可公示</a></li>
+						<li><a href="info_public_cf.html">行政处罚公示</a></li>
+					</ul>
+					<span class="r more more01">
+						<a href="info_public.html">查看更多></a>
+						<a href="info_public_cf.html">查看更多></a>
+					</span>
+				</div>
+				<div class="bd">
+					<!-- 行政许可公示 -->
+					<div>
+						<form class="search_list">
+							<div class="box dib vm"><span>行政相对人：</span><input type="text" name=""></div>
+							<div class="box dib vm"><span>项目名称：</span><input type="text" name=""></div>
+							<div class="box dib vm">
+								<span>申请时间：</span>
+								<div class="dib vm laydate-icon" id="startTime01"></div>
+								—
+								<div class="dib vm laydate-icon" id="endTime01"></div>
+							</div>
+							<button type="submit">查 询</button>
+						</form>
+
+						<!-- 行政许可列表 -->
+						<table class="table_list">
+					        <thead>
+					            <tr>
+					                <td width="60">序号</td>
+					                <td>行政相对人</td>
+					                <td class="item">项目名称</td>
+					                <td>审批类别</td>
+					                <td class="item01">审批部门</td>
+					                <td>审批时间</td>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td width="60">1</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">2</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">3</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">4</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">1</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">2</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">3</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">4</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">3</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">4</td>
+					                <td>吴清秀</td>
+					                <td class="item"><a>吴清秀申请特种设备作业许可项目名称吴清秀申请特种设备作业许可项目名称</a></td>
+					                <td>普通</td>
+					                <td class="item01">福泉市综合行政执法局</td>
+					                <td>2019-07-08</td>
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
+
+					<!-- 行政处罚公示 -->
+					<div>
+						<form class="search_list">
+							<div class="box dib vm"><span>当事人：</span><input type="text" name=""></div>
+							<div class="box dib vm"><span>案由：</span><input type="text" name=""></div>
+							<div class="box dib vm"><span>案号：</span><input type="text" name=""></div>
+							<div class="box dib vm">
+								<span>立案时间：</span>
+								<div class="dib vm laydate-icon" id="startTime02"></div>
+
+								<div class="dib vm laydate-icon" id="endTime02"></div>
+							</div>
+							<button type="submit">查 询</button>
+						</form>
+
+						<!-- 行政处罚公示列表 -->
+						<table class="table_list">
+					        <thead>
+					            <tr>
+					                <td width="60">序号</td>
+					                <td width="160">当事人</td>
+					                <td class="item" style="width:280px;">案由</td>
+					                <td width="210">案号</td>
+					                <td width="100">处罚依据</td>
+					                <td width="100">处罚结果</td>
+					                <td width="100">当前环节</td>
+					                <td width="100">立案时间</td>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td width="60">1</td>
+					                <td width="160">福泉市交通运输局</td>
+					                <td width="280"><a>涉嫌非法占地案</a></td>
+					                <td width="210">福行政执法立字[2019]第26号</td>
+					                <td width="100">正在处理</td>
+					                <td width="100">正在处理</td>
+					                <td width="100">调查取证</td>
+					                <td width="100">2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">2</td>
+					                <td width="160">福泉市春发烟花爆竹有限责任公司</td>
+					                <td width="280"><a>涉嫌在森林防火期内违规野外用火引起森林火灾案</a></td>
+					                <td width="210">福行政执法立字[2019]第27号</td>
+					                <td width="100">正在处理</td>
+					                <td width="100">正在处理</td>
+					                <td width="100">调查取证</td>
+					                <td width="100">2019-07-08</td>
+					            </tr>
+					            <tr>
+					                <td width="60">3</td>
+					                <td width="160">福泉市春发烟花爆竹有限责任公司</td>
+					                <td width="280"><a>涉嫌在森林防火期内违规野外用火引起森林火灾案</a></td>
+					                <td width="210">福行政执法立字[2019]第27号</td>
+					                <td width="100">根据《中华人民共和国森林法实施条例》第四十三条第一款之规定进行处罚。</td>
+					                <td width="100">正在处理</td>
+					                <td width="100">调查取证</td>
+					                <td width="100">2019-07-08</td>
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
+					
+					
+				</div>
+			</div>
+			<script type="text/javascript">jQuery(".public_list").slide();</script>
+		</div>
+
+		<!-- 双随机 -->
+		<div class="conbox">
+			<div class="public_list open_list">
+				<div class="hd sy_title fix">
+					<h2 class="l"><img src="images/icon_gongkai.png"><b class="fc">双随机一公开</b></h2>
+					<ul class="l">
+						<li><a href="info_public.html">抽查情况</a></li>
+						<li><a href="info_public_cf.html">查处情况</a></li>
+					</ul>
+					<span class="r more">
+						<a href="info_random.html">查看更多></a>
+						<a href="info_random.html">查看更多></a>
+					</span>
+				</div>
+				<div class="bd">
+					<!-- 抽查情况 -->
+					<div>
+						<form class="search_list">
+							<div class="box dib vm"><span>抽查活动名称：</span><input type="text" name=""></div>
+							<div class="box dib vm">
+								<span>抽查时间：</span>
+								<div class="dib vm laydate-icon" id="startTime03"></div>
+								—
+								<div class="dib vm laydate-icon" id="endTime03"></div>
+							</div>
+							<button type="submit">查 询</button>
+						</form>
+
+						<!-- 行政许可列表 -->
+						<table class="table_list">
+					        <thead>
+					            <tr>
+					                <td width="60">序号</td>
+					                <td class="item">抽查活动名称</td>
+					                <td>检查对象</td>
+					                <td>执法单位部门</td>
+					                <td width="140">抽查时间</td>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td width="60">1</td>
+					                <td class="item"><a>福泉市城镇街区燃气及配套消防设施设备安全检查</a></td>
+					                <td>福泉市公路建筑工程管理有限公司</td>
+					                <td>福泉市综合行政执法局第五大队</td>
+					                <td width="140">2019-07-09</td>
+					            </tr>
+					            <tr>
+					                <td width="60">2</td>
+					                <td class="item"><a>福泉市城镇街区燃气及配套消防设施设备安全检查</a></td>
+					                <td>福泉市公路建筑工程管理有限公司</td>
+					                <td>福泉市综合行政执法局第五大队</td>
+					                <td width="140">2019-07-09</td>
+					            </tr>
+					            <tr>
+					                <td width="60">3</td>
+					                <td class="item"><a>福泉市城镇街区燃气及配套消防设施设备安全检查福泉市城镇街区</a></td>
+					                <td>福泉市公路建筑工程管理有限公司</td>
+					                <td>福泉市综合行政执法局第五大队</td>
+					                <td width="140">2019-07-09</td>
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
+
+					<!-- 查处情况 -->
+					<div>
+						<form class="search_list">
+							<div class="box dib vm"><span>查处情况名称：</span><input type="text" name=""></div>
+							<div class="box dib vm">
+								<span>查处时间：</span>
+								<div class="dib vm laydate-icon" id="startTime04"></div>
+								—
+								<div class="dib vm laydate-icon" id="endTime04"></div>
+							</div>
+							<button type="submit">查 询</button>
+						</form>
+
+						<!-- 行政处罚公示列表 -->
+						<table class="table_list">
+					        <thead>
+					            <tr>
+					                <td width="60">序号</td>
+					                <td class="item">查处情况名称</td>
+					                <td>查处对象</td>
+					                <td>执法单位部门</td>
+					                <td width="140">查处时间</td>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td width="60">1</td>
+					                <td class="item"><a>福泉市城镇街区燃气及配套消防设施设备安全查处情况</a></td>
+					                <td>福泉市公路建筑工程管理有限公司</td>
+					                <td>福泉市综合行政执法局第五大队</td>
+					                <td width="140">2019-07-09</td>
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
+					
+					
+				</div>
+			</div>
+			<script type="text/javascript">jQuery(".open_list").slide();</script>
+		</div>
+
+		<style type="text/css">
+			.date_bg{ position: absolute; z-index: 999; top:0; left: 0; width: 100%; background-color: rgba(0,0,0,.5);}
+		</style>
+
+		<!-- 时间范围选择js -->
+		<script type="text/javascript">
+			//双公示和双随机划过标题切换查看更多
+			$(function(){
+				$(".public_list .sy_title .more01 a").first().show();
+				$(".public_list .sy_title ul li").mouseover(function(){
+					var n=$(this).index();
+					$(".public_list .sy_title .more01 a").hide().eq(n).show();
+				})
+
+				$(".open_list .sy_title .more a").first().show();
+				$(".open_list .sy_title ul li").mouseover(function(){
+					var n=$(this).index();
+					$(".open_list .sy_title .more a").hide().eq(n).show();
+				})
+				
+			})
+
+			!function(){
+				laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+			}();
+
+			// 行政许可日期范围
+			laydate({
+			    elem: '#startTime01',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+			laydate({
+			    elem: '#endTime01',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+
+			// 行政处罚日期
+			laydate({
+			    elem: '#startTime02',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+			laydate({
+			    elem: '#endTime02',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+
+			// 双随机抽查情况日期
+			laydate({
+			    elem: '#startTime03',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+			laydate({
+			    elem: '#endTime03',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+
+			// 双随机查处情况日期
+			laydate({
+			    elem: '#startTime04',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+			laydate({
+			    elem: '#endTime04',
+			    max: laydate.now() //+1代表明天，+2代表后天，以此类推
+			});
+
+		</script>	
+
+		<!-- 友情链接 -->
+		<div class="link_more fix">
+			<h3>【友情链接】</h3>
+			<div class="r" style=" width: 1100px;">
+				<select  onchange=mbar(this) name="select">
+					<option>各省市政府网站</option>
+			        <option value='http://www.guizhou.gov.cn/'>贵州省人民政府</option>
+			        <option value='http://www.guizhou.gov.cn/'>贵州省人民政府</option>
+				</select>
+
+				<select  onchange=mbar(this) name="select">
+					<option>省内其他网站</option>
+			        <option value='http://www.gzegn.gov.cn/'>贵州政务网</option>
+				</select>
+
+				<select  onchange=mbar(this) name="select">
+					<option>各市州政府网站</option>
+			        <option value='http://www.gzegn.gov.cn/'>贵州政务网</option>
+				</select>
+
+				<select  onchange=mbar(this) name="select">
+					<option>乡镇办事处网站</option>
+			        <option value='http://www.gzegn.gov.cn/'>贵州政务网</option>
+				</select>
+			</div>
+
+			<script type="text/javascript">
+				function mbar(sobj) {
+					var docurl =sobj.options[sobj.selectedIndex].value;
+					if (docurl != "") {
+						open(docurl,'_blank');
+						sobj.selectedIndex=0;
+						sobj.blur();
+					}
+				}
+			</script>
+		</div>
+
+	</div>
+</div>
+
+<!-- 返回顶部 -->
+<div class="side_box">
+	<ul>
+		<li class="sidetop">
+			<span></span>
+		</li>
+	</ul>
+</div>
+
+<!-- 底部 -->
+<div class="footerbox bg">
+	<div class="wid_main fix">
+		<div class="l">
+			<a href="http://121.43.68.40/exposure/jiucuo.html?site_code=5200000083&url=www.guizhou.gov.cn" target="blank" class="dib vm"><img src="images/zhaocuo.png" /></a>
+			<a href="http://bszs.conac.cn/sitename?method=show&id=09D70ADDD9E64427E053022819AC3042" target="blank" class="dib vm"><img src="images/dangzheng.png"></a>
+		</div>
+		<div class="l txt">
+			<p>版权所有：福泉市综合行政执法局&nbsp;&nbsp;&nbsp;地址：贵州省黔南州福泉市工业园区特1号</p>
+			<p><img src="images/beian.png">贵公网安备 5201030200xxxx号&nbsp;&nbsp;&nbsp;黔ICP备xxxxxxxxx号-2&nbsp;&nbsp;&nbsp;政府网站标识码：520xxxxxxxx</p>
+			<p>福泉市综合执法局信息技术处建设和维护 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+		</div>
+		<ul class="r other fix">
+			<li><a href="contact.html">联系我们</a></li>
+			<li><a href="about.html">机构概况</a></li>
+			<li><a href="info_public.html">信息公开</a></li>
+			<li><a href="newslist.html">办事指南</a></li>
+		</ul>
+
+	</div>
+</div>
+
+</body>
+</html>

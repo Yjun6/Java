@@ -1,0 +1,227 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta content="福泉市综合行政执法局" http-equiv="keywords">
+<meta name="description" content="福泉市综合行政执法局">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+
+<title>福泉市综合行政执法局</title>
+
+<link rel="stylesheet" href="css/index.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/children.css">
+
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="js/public.js"></script><!-- 菜单js等-->
+<!-- 时间选择js -->
+<script type="text/javascript" src="js/laydate.js"></script>
+
+</head>
+<body>
+<!--头部-->
+<div class="topbox bg">
+	<div class="wid_main fix">
+		<div class="logo l"><img src="images/logo.png" alt="logo" /></div>
+		<!-- 搜索 -->
+		<div class="search_box r bora_5">
+			<form>
+				<div>
+					<input type="text" name="" placeholder="请输入关键词检索">
+					<button type="submit"><img src="images/search.png"></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- top end -->
+
+<!-- 主体内容框 -->
+<div class="contentbox wid_main bora_5">
+	<div class="content">
+
+		<!-- 导航栏部分 -->
+		<div class="top_nav bg bora_5 ovh">
+			<ul class="fix">
+				<li>
+					<a href="index.html">首 页</a>
+				</li>
+				<li class="cur">
+					<a href="newslist.html">执法动态</a>
+				</li>
+				<li>
+					<a href="newslist.html">办事指南</a>
+				</li>
+				<li>
+					<a href="info_public.html">信息公开</a>
+				</li>
+				<li>
+					<a href="newslist.html">通知公告</a>
+				</li>
+				<li>
+					<a href="about.html">机构概况</a>
+				</li>
+				<li>
+					<a href="newslist.html">制度建设</a>
+				</li>
+				<li>
+					<a href="newslist.html">学习普法</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 导航end -->
+
+		<!-- 当前位置 -->
+		<div class="gonggao bdb_d fix">
+			<div class="txtScroll-top l fix zy_cur">
+				<div class="l tit"><img src="images/icon_location.png"><b class="dib vm">当前位置：</b></div>
+				<p class="l"><a href="index.html">首页</a><a href="about.html">执法动态</a><span>执法要闻</span></p>
+			</div>
+
+			<!-- 时间 -->
+			<div class="timebox fc r">
+				<script type="text/javascript" src="js/show_date.js"></script>
+			</div>
+		</div>
+
+		<!-- 子页内容框 -->
+		<div class="zy_contentbox">
+			<!-- zy_content -->
+			<div class="zy_content fix">
+				<!-- 左边栏 -->
+				<div class="zy_left_con">
+					<b></b>
+					<!-- 二级菜单 -->
+					<div class="zy_twonav">
+						<h2 class="tit">执法动态</h2>
+						<ul>
+							<li><a href="about.html">领导活动</a></li>
+							<li class="cur"><a href="about_leader.html">执法要闻</a></li>
+						</ul>
+					</div>
+					<!-- 联系信息 -->
+					<div class="contact">
+						<h2 class="tit">联系我们</h2>
+						<dl>
+							<dd><img src="images/icon_tel.png"><a>电话：0854-8762536</a></dd>
+							<dd><img src="images/icon_email.png"><a>信箱：1145202000@163.com</a></dd>
+							<dd><img src="images/icon_pin.png"><a>地址：贵州省黔南州福泉市工业园区特1号</a></dd>
+						</dl>
+					</div>
+				</div>
+				
+				<!-- 右边内容 -->
+				<div class="zy_right_con">
+					<!-- 当前位置 -->
+					<div class="zy_title fix">
+						<h2>执法要闻<i></i></h2>
+					</div>
+					<!-- 内容展示块-->
+					<div class="news_list zy_listbox">
+						<!-- 展示15条数据后出现分页 -->
+						<ul>
+							<li th:each="g:${ggsdList}"><b>·</b>
+								<a href="news_xq.html" th:text="${g.title}"></a>
+								<span th:text="${g.time}"></span>
+							</li>
+						</ul>
+						<!-- 通用分页 -->
+						<div class="fanye" style="text-align: left;">
+	                        <a href="#">上一页</a>
+	                        <div>
+	                            <a href="#" class="current">1</a>
+	                            <a href="#">2</a>
+	                            <a href="#">3</a>
+	                            <a href="#">4</a>
+	                            <a href="#">...</a>
+	                            <a href="#">10</a>
+	                        </div> 
+	                        <a href="#">下一页</a>
+	                        <p>
+	                        	<span>共20页</span>
+	                        	<span>转到第<input type="text" name="" value="2">页</span>
+	                        	<input type="submit" name="" value="确定">
+	                        </p>
+	                    </div>
+	                    <!-- 通用分页end -->
+					</div>
+				</div>
+			</div>
+			<!-- zy_content end -->
+		</div>
+		<!-- 内容框end -->	
+
+		<!-- 友情链接 -->
+		<div class="link_more">
+			<h3>【友情链接】</h3>
+			<select  onchange=mbar(this) name="select">
+				<option>各省市政府网站</option>
+		        <option value='http://www.guizhou.gov.cn/'>贵州省人民政府</option>
+		        <option value='http://www.guizhou.gov.cn/'>贵州省人民政府</option>
+			</select>
+
+			<select  onchange=mbar(this) name="select">
+				<option>省内其他网站</option>
+		        <option value='http://www.gzegn.gov.cn/'>贵州政务网</option>
+			</select>
+
+			<select  onchange=mbar(this) name="select">
+				<option>各市州政府网站</option>
+		        <option value='http://www.gzegn.gov.cn/'>贵州政务网</option>
+			</select>
+
+			<select  onchange=mbar(this) name="select">
+				<option>乡镇办事处网站</option>
+		        <option value='http://www.gzegn.gov.cn/'>贵州政务网</option>
+			</select>
+
+			<script type="text/javascript">
+				function mbar(sobj) {
+					var docurl =sobj.options[sobj.selectedIndex].value;
+					if (docurl != "") {
+						open(docurl,'_blank');
+						sobj.selectedIndex=0;
+						sobj.blur();
+					}
+				}
+			</script>
+		</div>
+
+	</div>
+</div>
+
+<!-- 返回顶部 -->
+<div class="side_box">
+	<ul>
+		<li class="sidetop">
+			<span></span>
+		</li>
+	</ul>
+</div>
+
+<!-- 底部 -->
+<div class="footerbox bg">
+	<div class="wid_main fix">
+		<div class="l">
+			<a href="http://121.43.68.40/exposure/jiucuo.html?site_code=5200000083&url=www.guizhou.gov.cn" target="blank" class="dib vm"><img src="images/zhaocuo.png" /></a>
+			<a href="http://bszs.conac.cn/sitename?method=show&id=09D70ADDD9E64427E053022819AC3042" target="blank" class="dib vm"><img src="images/dangzheng.png"></a>
+		</div>
+		<div class="l txt">
+			<p>版权所有：福泉市综合行政执法局&nbsp;&nbsp;&nbsp;地址：贵州省黔南州福泉市工业园区特1号</p>
+			<p><img src="images/beian.png">贵公网安备 5201030200xxxx号&nbsp;&nbsp;&nbsp;黔ICP备xxxxxxxxx号-2&nbsp;&nbsp;&nbsp;政府网站标识码：520xxxxxxxx</p>
+			<p>福泉市综合执法局信息技术处建设和维护 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+		</div>
+		<ul class="r other fix">
+			<li><a href="contact.html">联系我们</a></li>
+			<li><a href="about.html">机构概况</a></li>
+			<li><a href="info_public.html">信息公开</a></li>
+			<li><a href="newslist.html">办事指南</a></li>
+		</ul>
+
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.newdream.mapper.ILeaderMapper">
+
+    <!--查询所有领导班子-->
+    <select id="queryLeaderAll" resultType="cn.newdream.entity.Leader">
+        select *from leader
+    </select>
+
+</mapper>

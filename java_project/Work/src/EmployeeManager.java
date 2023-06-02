@@ -116,14 +116,41 @@ public class EmployeeManager {
         list.set(i,employee);
     }
 
+    //查询
+    public static void query(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("请输入需要查询的员工名字：");
+        String name = scanner.next();
+        boolean ret = true;
+        int i=0;
+        for (;i<list.size();i++) {
+            if(list.get(i).getName().compareTo(name)==0){
+                //找到了
+                ret = false;
+                break;
+            }
+        }
+        if(ret){
+            System.out.println("没有该员工信息");
+            return;
+        }
+
+        //输出该员工信息
+        System.out.println("编号："+list.get(i).getId()+"\t名字："+list.get(i).getName()+
+                "\t年龄："+list.get(i).getAge()+"\t性别："+list.get(i).getSex()+
+                "\t岗位："+list.get(i).getPosition()+"\t电话："+list.get(i).getPhone()+
+                "\t地址："+list.get(i).getAddress()+"\t工资"+list.get(i).getSalary());
+    }
+
     public static void main(String[] args) {
         new EmployeeManager();
         Scanner scanner = new Scanner(System.in);
 
+        //显示主界面
         menu();
 
         while(true){
-            System.out.println("\n****0.退出\t1.添加\t2.删除\t3.修改\t4.显示*****\n");
+            System.out.println("\n****0.退出\t1.添加\t2.删除\t3.修改\t4.显示\t5.查询*****\n");
             System.out.print("请选择：");
             int choice  = scanner.nextInt();
             scanner.nextLine();
@@ -146,6 +173,10 @@ public class EmployeeManager {
                 case 4:
                     //显示
                     prit();
+                    break;
+                case 5:
+                    //查询
+                    query();
                     break;
                 default :
                     System.out.println("您的输入有误，请重新输入");

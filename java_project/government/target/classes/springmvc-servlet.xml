@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd 
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+
+	<context:component-scan base-package="cn.newdream.controller"/>
+
+	<!--解决springmvc中静态资源的访问问题-->
+	<!--1 当访问静态资源时会进入核心控制器，当核心控制器找不到对应controller来处理静态资源时，-->
+	<!--springmvc中这个默认的servlet就会生效，会帮我们找到静态资源并返回-->
+	<mvc:default-servlet-handler/>
+	<!--2 上面解决了静态资源的访问问题，但是会导致springmvc中的部分注解失效-->
+	<!--因此这里添加注解驱动，让注解生效-->
+	<mvc:annotation-driven/>
+
+	<!--3 jsp视图解析器-->
+	<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/page/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>-->
+	<!--配置thymeleaf的视图解析器-->
+	<bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/page/"/>
+		<property name="suffix" value=".html"/>
+		<property name="templateMode" value="HTML5"/>
+		<property name="characterEncoding" value="UTF-8"/>
+	</bean>
+	<bean id="engine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver"/>
+	</bean>
+	<bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="engine"/>
+		<property name="characterEncoding" value="UTF-8"/>
+	</bean>
+
+</beans>

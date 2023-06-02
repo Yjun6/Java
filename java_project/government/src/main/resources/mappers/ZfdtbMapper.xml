@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.newdream.mapper.IZfdtb">
+
+    <!--查询最新的8条执法动态-->
+    <!--id和方法名字一样-->
+    <select id="queryTop8" resultType="cn.newdream.entity.Zfdtb">
+        select *from zfdtb order by time desc
+        limit 0,8
+    </select>
+
+    <!-- 根据id查询执法动态 -->
+    <select id="queryById" parameterType="int" resultType="cn.newdream.entity.Zfdtb">
+        select * from zfdtb where id = #{0}
+    </select>
+
+    <select id="queryAll" resultType="cn.newdream.entity.Zfdtb">
+        select *from zfdtb
+    </select>
+</mapper>
