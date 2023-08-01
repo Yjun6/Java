@@ -13,12 +13,21 @@ public class Daemo4 {
             while(true){
                 System.out.println("run run");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
         t.start();
+
+        try {
+            Thread.sleep(1000);
+            t.interrupt();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("111");
     }
 }

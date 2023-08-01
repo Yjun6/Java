@@ -21,7 +21,6 @@ public class Main {
     public static void main(String[] args) {
         Abc abc = new Abc();
         abc.start();
-
         while(true){
             System.out.println("main");
         }
