@@ -1,1 +1,5 @@
-wuli圣经欧尼~wuli圣经欧尼~wuli圣经欧尼~
+char[] buf = new char[1024];
+            int n = reader.read(buf);
+            if(n == -1){
+                break;
+            }
