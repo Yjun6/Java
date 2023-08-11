@@ -9,14 +9,14 @@ import java.io.*;
  */
 public class Main8 {
     public static void main(String[] args) throws IOException {
-//        try(OutputStream outputStream = new FileOutputStream("./t/text2.txt",true)){
-//            byte[] buf = new byte[10];
-//            buf[0] = 1;
-//            outputStream.write(buf);
-//        }
-
-        try(Writer writer = new FileWriter("./t/text2.txt",true)){
-            writer.write("wuli圣经欧尼~");
+        try(OutputStream outputStream = new FileOutputStream("./t/text1.txt",true)){
+            byte[] buf = new byte[10];
+            buf[0] = 1;
+            outputStream.write(buf);
         }
+
+//        try(Writer writer = new FileWriter("./t/text1.txt")){
+//            writer.write("wuli圣经欧尼~");
+//        }
     }
 }
