@@ -39,7 +39,7 @@ public class Server {
                     packet.getPort(),request,response);
         }
     }
-    private String process(String s){
+    public String process(String s){
         return s;
     }
 
