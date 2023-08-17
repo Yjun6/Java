@@ -21,7 +21,7 @@ public class Client {
     DatagramSocket socket = null;
     private String serverIp;
     private int serverPort;
-    Client(String ip,int port) throws SocketException {
+    public Client(String ip, int port) throws SocketException {
         serverIp = ip;
         serverPort = port;
         socket = new DatagramSocket();
