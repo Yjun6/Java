@@ -1,18 +1,14 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-        int n = nums.length, left = 0, right = 0;
-        while (right < n) {
-            if (nums[right] != 0) {
-                swap(nums, left, right);
-                left++;
+        //处理好了的区间 0区间 未处理区间
+        int len = nums.length;
+        for(int cur=0, dest=-1; cur<len; cur++) {
+            if(nums[cur]!=0) {
+                dest++;
+                int tmp = nums[dest];
+                nums[dest] = nums[cur];
+                nums[cur] = tmp;
             }
-            right++;
         }
-    }
-
-    public void swap(int[] nums, int left, int right) {
-        int temp = nums[left];
-        nums[left] = nums[right];
-        nums[right] = temp;
     }
 }
