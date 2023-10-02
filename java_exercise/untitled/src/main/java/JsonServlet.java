@@ -31,7 +31,10 @@ public class JsonServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         User user = objectMapper.readValue(req.getInputStream(), User.class);
-        System.out.println("username=" + user.username + "password" + user.password);
+        System.out.println("username=" + user.username + "  password=" + user.password);
         resp.getWriter().write("OK");
+        //jackson 能吧java对象转成json字符串
+        String userString = objectMapper.writeValueAsString(user);
+        System.out.println("userString=" + userString);
     }
 }
