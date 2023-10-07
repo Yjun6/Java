@@ -74,6 +74,7 @@
         background-color: gray;
     }
 </style>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script>
     let edit = document.querySelectorAll(".edit");
     function Submit() {
@@ -89,6 +90,22 @@
         div.innerHTML = '谁：'+from+' 对谁：'+to+" 说："+take;
         let content = document.querySelector(".content");
         content.appendChild(div);
+        // 把用户输入的数据，构造成http请求，发送给服务器
+        let body = {
+            "from": from,
+            "to": to,
+            "message": take
+        }
+        $.ajax({
+            type: "post",
+            // url: "/messageWall/message"
+            url: "message",
+            contentType: "application/json; charset=utf8",
+            data: JSON.stringify(body),
+            success: function(body) {
+                console.log(body);
+            }
+        });
     }
 </script>
 </html>
