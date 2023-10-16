@@ -49,5 +49,57 @@
 <!--            </div>-->
         </div>
     </div>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script>
+        //编写 js 代码
+        //构造http请求，获取博客数据，展示到页面上
+        function getBlogs() {
+            $.ajax({
+                type: 'get',
+                url: 'blog',
+                success: function(body) {
+                    //根据响应内容，构造Html页面，展示到页面上
+                    // 由于在服务器响应中已经设置了 Content-Type为application/json
+                    //jQuery 就能够自动把此处的相应的内容解析成js对象数组
+                   
+                    // for(let i = 0; i < body.length; i++) {
+                    //     let blog = body[i];
+                    // }
+                    let container = document.querySelector('.container-right');
+                    for(let blog of body) {
+                        // blogId title  content userId postTime
+                        //根据当前这个blog构造html片段
+                        let blogDiv = document.createElement("div");
+                        blogDiv.className = 'blog';
+                        let titleDiv = document.createElement('div');
+                        titleDiv.className = 'title';
+                        titleDiv.innerHTML = blog.title;
+                        blogDiv.appendChild(titleDiv);
+                        //构造 date 时间
+                        let dateDiv = document.createElement('div');
+                        dateDiv.className = 'date';
+                        dateDiv.innerHTML = blog.postTime;
+                        blogDiv.appendChild(dateDiv);
+                        //构造desc 摘要
+                        let descDiv = document.createElement('div');
+                        descDiv.className = 'desc';
+                        descDiv.innerHTML = blog.content;
+                        blogDiv.appendChild(descDiv);
+                        //构造detail 查看全文的按钮
+                        let a = document.createElement('a');
+                        a.href = 'blog_content.html?blogId=' + blog.blogId;
+                        a.innerHTML = '查看全文 &gt;&gt;';
+                        a.className = 'detail';
+                        blogDiv.appendChild(a);
+                        //最后把拼好的blogDiv添加到container的后面
+                        container.appendChild(blogDiv);
+                    }
+                }
+            });
+        }
+        getBlogs();
+    </script>
 </body>
 </html>
+
