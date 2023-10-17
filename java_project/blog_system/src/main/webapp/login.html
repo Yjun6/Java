@@ -20,17 +20,19 @@
         <!-- 这是登录页面 -->
         <div class="login_dialog">
             <h3>登录</h3>
-            <div class="row">
-                <span>用户名</span>
-                <input class="username" type="text" name="" id="">
-            </div>
-            <div class="row">
-                <span>密码</span>
-                <input class="password" type="password" name="" id="">
-            </div>
-            <div class="row">
-                <button>提交</button>
-            </div>
+            <form action="login" method="post">
+                <div class="row">
+                    <span>用户名</span>
+                    <input class="username" type="text" name="username" id="">
+                </div>
+                <div class="row">
+                    <span>密码</span>
+                    <input class="password" type="password" name="password" id="">
+                </div>
+                <div class="row">
+                    <button>提交</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
