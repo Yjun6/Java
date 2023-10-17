@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  * Created with IntelliJ IDEA.
@@ -52,8 +53,13 @@ public class Blog {
         this.userId = userId;
     }
 
-    public Timestamp getPostTime() {
-        return postTime;
+    public String getPostTime() {
+        // 时间戳需要转换成格式化时间
+        //1.先构造一个对象，构造时指定具体的格式
+        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
+        //2.使用format，得到格式化数据
+        return format.format(postTime);
+//        return postTime;
     }
 
     public void setPostTime(Timestamp postTime) {

@@ -111,7 +111,7 @@ html,body {
     padding-bottom: 10px;
     padding-top: 10px;
 }
-.blog .desc {
+.blog #desc {
     text-indent: 2em;
     line-height: 30px;
     margin-top: 20px;
