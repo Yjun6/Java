@@ -58,4 +58,25 @@ public class LoginServlet extends HttpServlet {
         //4. 跳转到博客列表页面
         resp.sendRedirect("blog_list.html");
     }
+
+    //通过这个方法，检测当前登录状态
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //会话不存在，就认为未登录
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            //未登录
+            resp.setStatus(403);
+            return;
+        }
+        //不仅仅需要确认会话是否存在，还要确认user对象是否存在
+        // 为了实现后面的“退出登录”功能
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            resp.setStatus(403);
+            return ;
+        }
+        //返回200表示已经登录
+        resp.setStatus(200);
+    }
 }

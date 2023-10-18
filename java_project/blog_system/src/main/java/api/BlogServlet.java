@@ -47,6 +47,23 @@ public class BlogServlet extends HttpServlet {
             resp.getWriter().write(respJson);
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1.获取请求中的传递的内容
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+        if (title == null || content == null
+                || title.equals("") || content.equals("")) {
+            resp.setContentType("text/html; charset=utf8");
+            resp.getWriter().write("标题或正文为空");
+            return;
+        }
+        //2.构造Blog对象，并且插入到数据库中
+        Blog blog = new Blog();
+        blog.setTitle(title);
+        blog.setContent(content);
+    }
 }
 
 
