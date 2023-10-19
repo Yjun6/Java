@@ -20,13 +20,18 @@
     </div>
     <!-- <p>写博客</p> -->
     <div class="edit_blog_container">
-        <div class="title">
-            <input type="text">
-            <button>发布文章</button>
-        </div>
-        <div id="editor">
-            富文本
-        </div>
+        <form action="blog" method="post" class="edit">
+            <!-- 标题编辑区 -->
+            <div class="title">
+                <input type="text" id="title-input" name="title">
+                <button>发布文章</button>
+            </div>
+            <!-- 博客编辑器 -->
+            <div id="editor">
+                <!-- 富文本 -->
+                <textarea name="content" style="display: none;"></textarea>
+            </div>
+        </form>
     </div>
 </body>
     <!-- 引入 editor.md 的依赖 -->
@@ -37,7 +42,7 @@
 <script src="js/app.js"></script>
 <script>
     let edit = editormd('editor', {
-        width: "100%",
+        width: "100%", 
         height: "calc(100% - 80px)",
         markdown: "####开始编写博客",
         path: "./editor.md/lib/"
