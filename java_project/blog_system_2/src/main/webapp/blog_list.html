@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+    <div class="nav">
+        <img src="./img/logo.jpg" alt="">
+        <span>我的博客系统</span>
+        <span class="space"></span>
+        <a href="blog_list.html">主页</a>
+        <a href="blog_edit.html">写博客</a>
+        <a href="logout">注销</a>
+    </div>
+    <div class="container">
+        <div class="container-left">
+            <!-- 个人信息 -->
+            <div class="card">
+                <img src="./img/avatar.jpg" alt="">
+                <!-- <h3>湖工邹邹</h3> -->
+                <h3></h3>
+                <a href="https://github.com/Yjun6">gitHub地址</a>
+                <div class="counter">
+                    <span>文章</span>
+                    <span>分类</span>
+                </div>
+                <div class="counter">
+                    <span>1</span>
+                    <span>2</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-right">
+<!--            &lt;!&ndash; 博客信息 &ndash;&gt;-->
+<!--            <div class="blog">-->
+<!--                <div class="title">-->
+<!--                    这是第一篇博客-->
+<!--                </div>-->
+<!--                <div class="date">-->
+<!--                    2023-10-14-->
+<!--                </div>-->
+<!--                <div class="desc">-->
+<!--                    这是博客信息从曝光的画面中看，10 月份的新疆景色真是迷人，在太阳的照耀下，树叶都是金黄色，当地的天气十分舒适。-->
+<!--                    李亚鹏戴着墨镜，海哈金喜抱着孩子一家三口走在大街上，画面很温馨。李亚鹏表示 10 年没有回过老家了，这一次他非常大方地将妻子海哈金喜和小女儿介绍给乡亲们认识。-->
+<!--                </div>-->
+<!--                <a class="detail" href="./blog_content.html?blogId=1">查看全文&gt;&gt;</a>-->
+<!--            </div>-->
+        </div>
+    </div>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script src="js/app.js"></script>
+    <script>
+        //编写 js 代码
+        //构造http请求，获取博客数据，展示到页面上
+        function getBlogs() {
+            $.ajax({
+                type: 'get',
+                url: 'blog',
+                success: function(body) {
+                    //根据响应内容，构造Html页面，展示到页面上
+                    // 由于在服务器响应中已经设置了 Content-Type为application/json
+                    //jQuery 就能够自动把此处的相应的内容解析成js对象数组
+                   
+                    // for(let i = 0; i < body.length; i++) {
+                    //     let blog = body[i];
+                    // }
+                    let container = document.querySelector('.container-right');
+                    for(let blog of body) {
+                        // blogId title  content userId postTime
+                        //根据当前这个blog构造html片段
+                        let blogDiv = document.createElement("div");
+                        blogDiv.className = 'blog';
+                        let titleDiv = document.createElement('div');
+                        titleDiv.className = 'title';
+                        titleDiv.innerHTML = blog.title;
+                        blogDiv.appendChild(titleDiv);
+                        //构造 date 时间
+                        let dateDiv = document.createElement('div');
+                        dateDiv.className = 'date';
+                        dateDiv.innerHTML = blog.postTime;
+                        blogDiv.appendChild(dateDiv);
+                        //构造desc 摘要
+                        let descDiv = document.createElement('div');
+                        descDiv.className = 'desc';
+                        descDiv.innerHTML = blog.content;
+                        blogDiv.appendChild(descDiv);
+                        //构造detail 查看全文的按钮
+                        let a = document.createElement('a');
+                        a.href = 'blog_content.html?blogId=' + blog.blogId;
+                        a.innerHTML = '查看全文 &gt;&gt;';
+                        a.className = 'detail';
+                        blogDiv.appendChild(a);
+                        //最后把拼好的blogDiv添加到container的后面
+                        container.appendChild(blogDiv);
+                    }
+                }
+            });
+        }
+        getBlogs();
+
+        checkLogin();
+
+        function getUser() {
+            $.ajax({
+                type: 'get',
+                url: 'user',
+                success: function(body) {
+                    //body就是解析后的user对象
+                    let h3 = document.querySelector(".card h3");
+                    h3.innerHTML = body.username;
+                }
+            });
+        }
+        getUser();
+    </script>
+</body>
+</html>
+

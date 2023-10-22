@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/content.css">
+
+    <!-- editor的引入，依赖于jquery -->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- 引入 editor.md 的依赖 -->
+<link rel="stylesheet" href="editor.md/css/editormd.min.css" />
+<script src="editor.md/lib/marked.min.js"></script>
+<script src="editor.md/lib/prettify.min.js"></script>
+<script src="editor.md/editormd.js"></script>
+</head>
+<body>
+    <div class="nav">
+        <img src="./img/logo.jpg" alt="">
+        <span>我的博客系统</span>
+        <span class="space"></span>
+        <a href="blog_list.html">主页</a>
+        <a href="blog_edit.html">写博客</a>
+        <a href="logout">注销</a>
+    </div>
+    <div class="container">
+        <div class="container-left">
+            <!-- 个人信息 -->
+            <div class="card">
+                <img src="./img/avatar.jpg" alt="">
+                <!-- <h3>湖工邹邹</h3> -->
+                <h3></h3>
+                <a href="https://github.com/Yjun6">gitHub地址</a>
+                <div class="counter">
+                    <span>文章</span>
+                    <span>分类</span>
+                </div>
+                <div class="counter">
+                    <span>1</span>
+                    <span>2</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-right">
+            <!-- 博客信息 -->
+            <div class="blog">
+                <div class="title"><!-- 这是第一篇博客 --></div>
+                <div class="date"><!-- 2023-10-14 --></div>
+                <div id="desc"> <!-- 这里是文章内容--></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        function getBlog() {
+            $.ajax({
+                url: 'blog' + location.search,
+                type: 'get',
+                success: function(body) {
+                    // 把拿到的响应构造页面内容
+                     // blogId title  content userId postTime
+                    let title = document.querySelector('.container-right .title');
+                    title.innerHTML = body.title;
+                    let  date = document.querySelector('.container-right .date');
+                    date.innerHTML = body.postTime;
+                    //关于文章内容 带渲染效果
+                    editormd.markdownToHTML('desc', { markdown: body.content});
+                }
+            });
+        }
+        getBlog();
+        checkLogin();
+        function getUser() {
+            $.ajax({
+                type: 'get',
+                url: 'user' + location.search,
+                success: function(body) {
+                    //body就是解析后的user对象
+                    let h3 = document.querySelector(".card h3");
+                    h3.innerHTML = body.username;
+                }
+            });
+        }
+        getUser();
+    </script>
+</body>
+</html>
