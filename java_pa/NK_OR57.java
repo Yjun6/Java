@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Gloves {
+class Gloves {
     public int findMinimum(int n, int[] left, int[] right) {
         // write code here
         int leftSum = 0;

@@ -1,7 +1,9 @@
+import java.util.Scanner;
+
 /**
  * Created by arrow on 11/19/17.
  */
-public class Question {
+class Question {
     public static int jumpTimes(int N, int M) {
         // jump数组表示调到jump[i]所用的最大步数
         int[] jump = new int[M + 1];
