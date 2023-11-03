@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
