@@ -1,6 +1,7 @@
 package com.example.book.dao;
 
 import com.example.book.model.BookInfo;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Random;
  * Date:2023-11-03
  * Time:20:00
  */
+@Component
 public class BookDao {
     public List<BookInfo> mockData() {
         List<BookInfo> bookInfos = new ArrayList<>(15);

@@ -2,6 +2,7 @@ package com.example.book.controller;
 
 import com.example.book.model.BookInfo;
 import com.example.book.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,9 @@ import java.util.Random;
 @RequestMapping("/book")
 @RestController
 public class BookController {
-    private BookService bookService = new BookService();
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping("/getBookList")
     public List<BookInfo> getBookList() {
         //1.获取图书数据
