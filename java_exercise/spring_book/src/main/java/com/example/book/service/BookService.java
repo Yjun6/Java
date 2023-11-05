@@ -4,6 +4,7 @@ import com.example.book.dao.BookDao;
 import com.example.book.model.BookInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * Date:2023-11-03
  * Time:20:00
  */
-@Component
+@Service
 public class BookService {
     @Autowired
     private BookDao bookDao;
