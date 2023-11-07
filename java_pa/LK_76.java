@@ -1,4 +1,4 @@
-class Solution {
+class MM {
     public String minWindow(String s, String t) {
         int lenS = s.length();
         int lenT = t.length();

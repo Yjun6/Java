@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+class Maindg {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (in.hasNextLine()) { // 注意 while 处理多个 case

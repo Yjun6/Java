@@ -1,4 +1,4 @@
-class Solution {
+class MMM {
     public int search(int[] nums, int target) {
         int len = nums.length;
         int left = 0;
