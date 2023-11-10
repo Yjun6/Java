@@ -1,0 +1,8 @@
+kaptcha:
+    items:
+        # admin captcha
+        admin:
+            path: /admin/captcha
+            session:
+                key: HOME_KAPTCHA_SESSION_KEY
+                date: HOME_KAPTCHA_SESSION_DATE
