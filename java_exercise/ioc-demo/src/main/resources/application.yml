@@ -1,0 +1,6 @@
+
+logging:
+  level:
+    root: info
+  file:
+    name: aa.log
