@@ -35,4 +35,9 @@ class UserInfoMapperTest {
         List<UserInfo> list = userInfoMapper.selectAll();
         log.info(list.toString());
     }
+
+    @Test
+    void selectOne() {
+        log.info(userInfoMapper.selectOne(2).toString());
+    }
 }
