@@ -1,0 +1,9 @@
+2023-11-17 14:47:38.918  INFO 46280 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-17 14:47:39.096  INFO 46280 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-17 14:47:39.169  INFO 46280 --- [main] c.e.demo.mapper.UserInfoMapperTest       : UserInfo(id=2, username=zhangsan, password=zhangsan, age=18, gender=1, phone=18612340002, deleteFlag=0, createTime=Sat Nov 11 20:14:35 CST 2023, updateTime=Sat Nov 11 20:14:35 CST 2023)
+2023-11-17 14:47:39.188  INFO 46280 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-17 14:47:39.200  INFO 46280 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-17 15:12:12.626  INFO 56892 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Starting UserInfoMapperTest using Java 1.8.0_192 on Yu with PID 56892 (started by Yu in D:\Documents\code\Java\java_exercise\mybatis-demo)
+2023-11-17 15:12:12.627 DEBUG 56892 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-17 15:12:12.627  INFO 56892 --- [main] c.e.demo.mapper.UserInfoMapperTest       : No active profile set, falling back to 1 default profile: "default"
+2023-11-17 15:12:13.341  INFO 56892 --- [main] c.e.demo.controller.LoggerController     : ==========info日誌========

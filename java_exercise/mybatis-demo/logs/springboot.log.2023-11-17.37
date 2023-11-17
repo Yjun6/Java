@@ -1,0 +1,7 @@
+2023-11-17 20:07:52.964  INFO 15140 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-17 20:07:52.977  INFO 15140 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-17 20:08:26.173  INFO 9624 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Starting UserInfoMapperTest using Java 1.8.0_192 on Yu with PID 9624 (started by Yu in D:\Documents\code\Java\java_exercise\mybatis-demo)
+2023-11-17 20:08:26.193 DEBUG 9624 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-17 20:08:26.199  INFO 9624 --- [main] c.e.demo.mapper.UserInfoMapperTest       : No active profile set, falling back to 1 default profile: "default"
+2023-11-17 20:08:27.065  INFO 9624 --- [main] c.e.demo.controller.LoggerController     : ==========info日誌========
+2023-11-17 20:08:28.164  INFO 9624 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Started UserInfoMapperTest in 2.318 seconds (JVM running for 3.511)

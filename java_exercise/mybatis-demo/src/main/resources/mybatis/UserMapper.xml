@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserInfoMapper">
+    <select id="selectAll" resultType="com.example.demo.model.UserInfo">
+        select * from userinfo
+    </select>
+
+    <select id="selectOne" resultType="com.example.demo.model.UserInfo">
+        select * from userinfo where id = #{id}
+    </select>
+
+    <select id="login" resultType="com.example.demo.model.UserInfo">
+        select * from userinfo where username=#{username} and password=#{password}
+    </select>
+
+    <select id="getAllByOrder" resultType="com.example.demo.model.UserInfo">
+        select * from userinfo order by id ${myOrder}
+    </select>
+
+    <delete id="deleteById">
+        delete from userinfo where id = #{id}
+    </delete>
+
+    <update id="update">
+        update userinfo set username=#{username} where id=#{id}
+    </update>
+
+    <insert id="add">
+        insert into userinfo(username,password,age,phone)
+        values (#{username}, #{password}, #{age}, #{phone})
+    </insert>
+
+    <!-- 是否自增   自增的是谁  自增的值赋值给谁 -->
+    <insert id="insertId" useGeneratedKeys="true"
+            keyColumn="id" keyProperty="id">
+        insert into userinfo(username,password,age,phone)
+        values (#{username}, #{password}, #{age}, #{phone})
+    </insert>
+
+    <select id="getLikeList" resultType="com.example.demo.model.UserInfo">
+        select * from userinfo
+        where username like concat('%', #{username}, '%')
+    </select>
+
+   <insert id="add2">
+       insert into userinfo(username, password, age
+       <if test="gender!=null">
+           ,gender
+       </if>
+       <if test="phone!=null">
+           ,phone
+       </if>
+       ) values(#{username}, #{password}, #{age}
+            <if test="gender!=null">
+                ,#{gender}
+            </if>
+            <if test="phone!=null">
+               ,#{phone}
+            </if>
+       )
+   </insert>
+
+    <insert id="add3">
+        insert into userinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                username,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="age!=null">
+                age,
+            </if>
+            <if test="gender!=null">
+                gender,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                #{username},
+            </if>
+            <if test="password!=null">
+                #{password},
+            </if>
+            <if test="age!=null">
+                #{age},
+            </if>
+            <if test="gender!=null">
+                #{gender},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getListByWhere" resultType="com.example.demo.model.UserInfo">
+        select * from userinfo
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id > 0">
+                id = #{id}
+            </if>
+            <if test="username!=null">
+                and username=#{username}
+            </if>
+        </trim>
+<!--        <where>  -->
+<!--            <if test="id > 0">-->
+<!--                id = #{id}-->
+<!--            </if>-->
+<!--            <if test="username!=null">-->
+<!--                and username=#{username}-->
+<!--            </if>-->
+<!--        </where>-->
+    </select>
+
+    <update id="update2">
+        update userinfo
+        <set>
+            <if test="username!=null">
+                username = #{username},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delByIds">
+        delete from userinfo
+        where id in
+        <foreach collection="ids" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,7 @@
+2023-11-17 11:55:20.176  INFO 51356 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Starting UserInfoMapperTest using Java 1.8.0_192 on Yu with PID 51356 (started by Yu in D:\Documents\code\Java\java_exercise\mybatis-demo)
+2023-11-17 11:55:20.177 DEBUG 51356 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-17 11:55:20.177  INFO 51356 --- [main] c.e.demo.mapper.UserInfoMapperTest       : No active profile set, falling back to 1 default profile: "default"
+2023-11-17 11:55:21.059  INFO 51356 --- [main] c.e.demo.controller.LoggerController     : ==========info日誌========
+2023-11-17 11:55:22.314  INFO 51356 --- [main] c.e.demo.mapper.UserInfoMapperTest       : Started UserInfoMapperTest in 2.537 seconds (JVM running for 3.88)
+2023-11-17 11:55:22.640  INFO 51356 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-17 11:55:22.846  INFO 51356 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
