@@ -1,0 +1,7 @@
+2023-11-18 20:08:52.172  INFO 16812 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 1.8.0_192 on Yu with PID 16812 (D:\Documents\code\Java\java_grammar\transaction-demo\target\classes started by Yu in D:\Documents\code\Java\java_grammar\transaction-demo)
+2023-11-18 20:08:52.173 DEBUG 16812 --- [restartedMain] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-18 20:08:52.174  INFO 16812 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-18 20:08:52.245  INFO 16812 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-18 20:08:52.246  INFO 16812 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-18 20:08:53.994  INFO 16812 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-18 20:08:54.007  INFO 16812 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]

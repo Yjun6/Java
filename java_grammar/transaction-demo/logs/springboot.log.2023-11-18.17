@@ -1,0 +1,7 @@
+2023-11-18 20:16:36.178  INFO 2860 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-18 20:16:36.196  INFO 2860 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-18 20:16:42.371  INFO 17100 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 1.8.0_192 on Yu with PID 17100 (D:\Documents\code\Java\java_grammar\transaction-demo\target\classes started by Yu in D:\Documents\code\Java\java_grammar\transaction-demo)
+2023-11-18 20:16:42.377 DEBUG 17100 --- [restartedMain] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-18 20:16:42.378  INFO 17100 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-18 20:16:42.449  INFO 17100 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-18 20:16:42.449  INFO 17100 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
