@@ -13,4 +13,8 @@ public class UserService {
     public int reg(Userinfo userinfo) {
         return userMapper.reg(userinfo);
     }
+
+    public Userinfo getUserByName (String username) {
+        return userMapper.getUserByName(username);
+    }
 }
