@@ -35,13 +35,11 @@ alter table user add unique uq_username (username);
 -- 构造一些初始数据，以便后续测试
 insert into user values(1, 'zouyujie', '123'),(2, 'zhangsan', '123');
 
-insert into article values(1, 'UDP和TCP的区别',
+insert into article values(null, 'UDP和TCP的区别',
     '一、关于有连是：一个客户端可以连接多个服务器，一个服全双工：一个通道，可以双向通信。半双工：一个通道，只能单向通信。',
-    1,'2023-10-15 20:58');
+    '2023-10-15 20:58','2023-11-21 17:15',1,1);
 
-insert into article values(2, 'UDP和TCP的区别',
+insert into article values(null, 'UDP和TCP的区别',
     '以对应多个客户端的连接. 二、关于可靠传输和不可TCP和文件操据报只能单向通信。',
-    1,'2023-10-15 20:58');
-insert into article values(3, 'UDP和TCP的区别',
-    '一、关于有连接和无连接TCP进行编就是：一个客户端据报。四、关半双工：一个通道，只能单向通信。',
-    1,'2023-10-15 20:58');
+    '2023-10-15 20:58','2023-11-21 17:15',1,1);
+

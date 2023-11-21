@@ -30,7 +30,7 @@
     <!-- 编辑框容器 -->
     <div class="blog-edit-container">
         <!-- 标题编辑区 -->
-        <div class="title">
+        <div class="title" id="title">
             <input type="text" placeholder="在这里写下文章标题">
             <button onclick="mysub()">发布文章</button>
         </div>
@@ -61,6 +61,28 @@
         function mysub(){
             // alert(editor.getValue()); // 获取值
             // editor.setValue("#123") // 设置值
+
+            //1.非空校验
+            var title = jQuery("#title");
+            if (title.val().trim()=="") {
+                alert("请先输入标题！");
+                return false;
+            }
+            if (editor.getValue()=="") {
+                alert("请输入文章内容");
+                return false;
+            }
+            //2.将用户数据传递给后端
+            jQuery.ajax({
+                url: "/art/add",
+                type: "post",
+                data: {
+                    "title": title.val(),
+                    "content": editor.getValue()
+                },
+                success: function(res) {}
+            });
+            //3.将后端数据展示给用户
         }
     </script>
 </body>

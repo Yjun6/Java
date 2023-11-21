@@ -6,6 +6,10 @@ spring:
     username: root
     password: 666666
     driver-class-name: com.mysql.cj.jdbc.Driver
+#时间格式 只对Date生效 全局变量的格式化
+  jackson:
+    date-format: yyy-MM-dd HH:mm
+    time-zone: GMT+8
 #mybatis ????
 mybatis:
   mapper-locations: classpath:mybatis/*Mapper.xml

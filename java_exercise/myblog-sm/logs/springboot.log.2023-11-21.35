@@ -1,0 +1,12 @@
+2023-11-21 22:54:06.782  INFO 22256 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-21 22:54:06.785  INFO 22256 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-21 22:54:06.787  INFO 22256 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-11-21 22:54:06.931  INFO 22256 --- [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-21 22:54:07.079  INFO 22256 --- [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-21 22:57:46.656  INFO 22256 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-21 22:57:46.668  INFO 22256 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-21 22:57:49.277  INFO 84 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Starting MyblogDemoApplication using Java 1.8.0_192 on Yu with PID 84 (D:\Documents\code\Java\java_exercise\myblog-sm\target\classes started by Yu in D:\Documents\code\Java\java_exercise\myblog-sm)
+2023-11-21 22:57:49.278 DEBUG 84 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-21 22:57:49.279  INFO 84 --- [restartedMain] com.example.demo.MyblogDemoApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-11-21 22:57:49.323  INFO 84 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-21 22:57:49.323  INFO 84 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'

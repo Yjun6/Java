@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.common.AppVariable;
 import com.example.demo.common.ResultAjax;
+import com.example.demo.common.SessionUtils;
 import com.example.demo.model.Userinfo;
 import com.example.demo.model.vo.UserinfoVO;
 import com.example.demo.service.UserService;
@@ -66,6 +67,19 @@ public class UserController {
         //5.将结果返回给用户
         return ResultAjax.succ(1);
     }
+
+    /**
+     * 注销
+     * */
+    @RequestMapping("/logout")
+    public ResultAjax logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session!=null && session.getAttribute(AppVariable.SESSION_USERINFO_KEY)!=null) {
+            session.removeAttribute(AppVariable.SESSION_USERINFO_KEY);
+        }
+        return ResultAjax.succ(1);
+    }
+
 
     @RequestMapping("/test")
     public int test() {
