@@ -13,6 +13,8 @@
     <script src="editor.md/editormd.js"></script>
     <script src="editor.md/lib/marked.min.js"></script>
     <script src="editor.md/lib/prettify.min.js"></script>
+    <script src="js/urlutils.js"></script>
+    <script src="js/logout.js"></script>
 </head>
 
 <body>
@@ -31,43 +33,105 @@
         <!-- 左侧个人信息 -->
         <div class="container-left">
             <div class="card">
-                <img src="img/avatar.png" class="avtar" alt="">
-                <h3>小可爱</h3>
-                <a href="http:www.github.com">github 地址</a>
+                <img id="photo" src="img/avatar.png" class="avtar" alt="">
+                <h3 id="username"></h3>
+                <a href="https://www.javacn.site">github 地址</a>
                 <div class="counter">
                     <span>文章</span>
-                    <span>分类</span>
+                    <!-- <span>分类</span> -->
                 </div>
                 <div class="counter">
-                    <span>2</span>
-                    <span>1</span>
+                    <span id="artcount"></span>
+                    <!-- <span>1</span> -->
                 </div>
             </div>
         </div>
         <!-- 右侧内容详情 -->
         <div class="container-right">
-            <div class="blog-content">
+            <div class="blog-content" id = "content">
                 <!-- 博客标题 -->
-                <h3>我的第一篇博客</h3>
+                <h3 id="title"></h3>
                 <!-- 博客时间 -->
-                <div class="date">2021-06-02</div>
+                <div class="date">
+                    发布时间<span id="createtime"></span>
+                    | 阅读量<span id="rcount"></span>
+                </div>
                 <!-- 博客正文 -->
                 <div id="editorDiv">
 
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
     <script type="text/javascript">
-            var editormd;
-            function initEdit(md){
-                editormd = editormd.markdownToHTML("editorDiv", {
-                markdown : md, // Also, you can dynamic set Markdown text
-                // htmlDecode : true,  // Enable / disable HTML tag encode.
-                // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
-                });
+        var id = getParamValue("id");
+        var editormd;
+        function initEdit(md){
+            editormd = editormd.markdownToHTML("editorDiv", {
+            markdown : md, // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+            });
+        }
+        
+        function init() {
+            //1.校验参数
+            if (id==null || id<=0) {
+                alert("参数有误!");
+                return false;
             }
-            
+            //2.请求后端获取数据
+            jQuery.ajax({
+                url: "/art/detail",
+                type: "get",
+                data: {
+                    "id": id
+                },
+                success: function(res) {
+                    if (res.code==200 && res.data!=null) {
+                        //展示文章
+                        var user = res.data.user;
+                        var art = res.data.art;
+                        if (user!=null) {
+                            //给用户对象设置值
+                            if(user.photo!="") {
+                                jQuery("#photo").attr("src",user.photo);
+                            }
+                            jQuery("#username").html(user.username);
+                            jQuery("#artcount").html(user.artCount);                     
+                        } else {
+                            alert("抱歉：查询失败!"+res.msg);
+                        }
+                        if (art!=null) {
+                            jQuery("#title").html(art.title);
+                            jQuery("#createtime").html(art.createtime);
+                            jQuery("#rcount").html(art.rcount);
+                            initEdit(art.content);
+                        } else {
+                            alert("抱歉：查询失败!"+res.msg);
+                        }
+                    } else {
+                        alert("抱歉：查询失败!"+res.msg);
+                    }
+                }
+            });
+        }
+        init();
+
+        //计算文章的阅读量
+        function incrementRCount() {
+            jQuery.ajax({
+                url: "/art/increment_rcount",
+                type: "post",
+                data: {
+                    "id": id
+                },
+                success: function(res) {
+
+                }
+            });
+        }
+        incrementRCount();
     </script> 
 </body>
 

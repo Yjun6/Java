@@ -72,7 +72,8 @@
                         var createHtml = "";  
                         if (artList==null || artList.length==0) {
                             //未发表文章
-                            createHtml += "<h3 style='margin-left:20px;margin-top=20px'>暂无文章，请先添加！<a href='blog_add.html'></h3>";
+                            createHtml += "<h3 style='margin-left:20px;margin-top=20px'>暂无文章，请先";
+                            createHtml += "添加！<a href='blog_add.html'></h3>";
                         } else {
                             for (var i = 0; i < artList.length; i++) {
                                 var art = artList[i];

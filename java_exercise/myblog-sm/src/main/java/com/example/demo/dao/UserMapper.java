@@ -9,6 +9,10 @@ import org.apache.ibatis.annotations.Select;
 public interface UserMapper {
     @Insert("insert into user(username,password) values(#{username},#{password})")
     int reg(Userinfo userinfo);
+
     @Select("select * from user where username=#{username}")
     Userinfo getUserByName(@Param("username") String username);
+
+    @Select("select * from user where id = #{uid}")
+    UserinfoVO getUserById(@Param("uid") Integer uid);
 }

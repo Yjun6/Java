@@ -19,7 +19,8 @@ public class Articleinfo implements Serializable {
     private int id;
     private String title;
     private String content;
-    private Date createtime;
+    @JsonFormat(pattern = "yyy-MM-dd HH:mm",timezone = "GMT+8")
+    private LocalDateTime createtime;
     @JsonFormat(pattern = "yyy-MM-dd HH:mm",timezone = "GMT+8")
     private LocalDateTime updatetime;
     private int uid;

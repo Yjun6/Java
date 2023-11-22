@@ -32,6 +32,20 @@ create table user (
 -- 修改user表表结构
 alter table user add unique uq_username (username);
 
+-- 修改article表结构 将添加时间改成当前系统时间
+ ALTER TABLE article  MODIFY COLUMN createtime TIMESTAMP NOT NULL
+ DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+-- 修改article表结构 将修改时间改成当前系统时间
+ ALTER TABLE article  MODIFY COLUMN updatetime TIMESTAMP NOT NULL
+ DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+-- 修改article表结构 添加rcount属性
+ALTER TABLE article ADD rcount INT;
+
+-- 修改article表中rcount文章阅读量的结构，给其添加默认值
+ALTER TABLE article ALTER COLUMN rcount SET DEFAULT 0;
+
 -- 构造一些初始数据，以便后续测试
 insert into user values(1, 'zouyujie', '123'),(2, 'zhangsan', '123');
 

@@ -30,8 +30,8 @@
     <!-- 编辑框容器 -->
     <div class="blog-edit-container">
         <!-- 标题编辑区 -->
-        <div class="title" id="title">
-            <input type="text" placeholder="在这里写下文章标题">
+        <div class="title">
+            <input id="title" type="text" placeholder="在这里写下文章标题">
             <button onclick="mysub()">发布文章</button>
         </div>
         <!-- 创建编辑器标签 -->
@@ -80,9 +80,26 @@
                     "title": title.val(),
                     "content": editor.getValue()
                 },
-                success: function(res) {}
+                success: function(res) {
+                    //3.将后端数据展示给用户
+                    if (res.code==200 && res.data==1) {
+                        //文章添加成功
+                        if (confirm("恭喜：添加成功！是否继续添加文章？")) {
+                            //继续添加文章
+                            location.href = location.href;
+                        } else {
+                            //跳转到文章管理页
+                            location.href = "myblog_list.html";
+                        }
+                    } else if(res.code==-2) {
+                        alert("抱歉：操作失败！"+res.msg);
+                        location.href = "login.html";
+                    } else {
+                        //文章添加失败
+                        alert("抱歉：操作失败！"+res.msg);
+                    }
+                }
             });
-            //3.将后端数据展示给用户
         }
     </script>
 </body>

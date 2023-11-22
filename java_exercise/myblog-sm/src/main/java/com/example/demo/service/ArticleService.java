@@ -19,4 +19,28 @@ public class ArticleService {
     public int del(Integer id, Integer uid) {
         return articleMapper.del(id, uid);
     }
+
+    public int add(Articleinfo articleinfo) {
+        return articleMapper.add(articleinfo);
+    }
+
+    public Articleinfo getArticleByIdAndUid(Integer id,Integer uid){
+        return articleMapper.getArticleByIdAndUid(id, uid);
+    }
+
+    public int update(Articleinfo articleinfo){
+        return articleMapper.update(articleinfo);
+    }
+
+    public Articleinfo getDetailById(Integer id) {
+        return articleMapper.getDetailById(id);
+    }
+
+    public int getArtCountByUid(Integer uid) {
+        return articleMapper.getArtCountByUid(uid);
+    }
+
+    public int incrementRCount(Integer id) {
+        return articleMapper.incrementRCount(id);
+    }
 }
