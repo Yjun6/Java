@@ -175,4 +175,43 @@ public class ArticleController {
         //2.更改数据库  3.返回结果
         return ResultAjax.succ(articleService.incrementRCount(id));
     }
+
+    /**查询分页功能
+     * 不需要校验参数，当传给后端两个null时，返回前端的是默认参数，也就是第一页参数
+     */
+    @RequestMapping("/getlistbypage")
+    public ResultAjax getListByPage(Integer pindex,Integer psize) throws ExecutionException, InterruptedException {
+        //1.参数校验
+        if (pindex==null || pindex<1) {
+            //参数矫正
+            pindex = 1;
+        }
+        if (psize==null || psize<1) {
+            psize = 2;
+        }
+        //2.并发进行文章列表查询
+        Integer finalPsize = psize;
+        Integer finalPindex = pindex;
+        FutureTask<List<Articleinfo>> listTask = new FutureTask<>(()->{
+            int offset = finalPsize *(finalPindex -1); //分页公式
+            return articleService.getArtListByLimit(finalPsize,offset);
+        });
+        //3.总页数查询
+        Integer finalPsize1 = psize;
+        FutureTask<Integer> sizeTask = new FutureTask<>(()->{
+            int totalCount = articleService.getCount();
+            int sizeTemp = ((totalCount% finalPsize1 ==0)?0:1)+(totalCount/finalPsize1);
+            return sizeTemp;
+        });
+        taskExecutor.submit(listTask);
+        taskExecutor.submit(sizeTask);
+        //4.组装数据
+        List<Articleinfo> list = listTask.get();
+        Integer size = sizeTask.get();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("list",list);
+        map.put("size",size);
+        //5.将结果返回给前端
+        return ResultAjax.succ(map);
+    }
 }

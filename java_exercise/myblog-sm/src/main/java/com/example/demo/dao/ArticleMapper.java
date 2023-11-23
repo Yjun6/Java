@@ -29,4 +29,10 @@ public interface ArticleMapper {
 
     @Update("update article set rcount=rcount+1 where id=#{id}")
     int incrementRCount(Integer id);
+
+    @Select("select * from article order by id desc limit #{limit} offset #{offset}")
+    List<Articleinfo> getArtListByLimit(@Param("limit") Integer limit, @Param("offset") Integer offset);
+
+    @Select("select count(id) from article")
+    int getCount();
 }

@@ -43,4 +43,12 @@ public class ArticleService {
     public int incrementRCount(Integer id) {
         return articleMapper.incrementRCount(id);
     }
+
+    public List<Articleinfo> getArtListByLimit(Integer limit, Integer offset) {
+        return articleMapper.getArtListByLimit(limit,offset);
+    }
+
+    public Integer getCount() {
+        return articleMapper.getCount();
+    }
 }
