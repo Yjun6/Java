@@ -83,10 +83,10 @@
            
             <hr>
             <div class="blog-pagnation-wrapper">
-                <button class="blog-pagnation-item">首页</button> 
-                <button class="blog-pagnation-item">上一页</button>  
-                <button class="blog-pagnation-item">下一页</button>
-                <button class="blog-pagnation-item">末页</button>
+                <button class="blog-pagnation-item" onclick="doFirst()">首页</button> 
+                <button class="blog-pagnation-item" onclick="doBefor()">上一页</button>  
+                <button class="blog-pagnation-item" onclick="doAfter()">下一页</button>
+                <button class="blog-pagnation-item" onclick="doEnd()">末页</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 当前在第<span id="pindex"></span>页,
                 共<span id="psize"></span>页
@@ -148,6 +148,42 @@
             });
         }
         init();
+
+        //跳转到首页
+        function doFirst() {
+            if(pindex<=1) {
+                alert("目前已经在首页，无需跳转!");
+            } else {
+                location.href = "blog_list.html";
+            }
+        }
+
+        //跳转到末页
+        function doEnd() {
+            if(pindex >= totalpage) {
+                alert("目前已经在末页，无需跳转!");                
+            } else {
+                location.href = "blog_list.html?pindex="+totalpage;
+            }
+        }
+
+        //跳转到上一页
+        function doBefor() {
+            if(pindex<=1) {
+                alert("当前在第一页，无需继续跳转!");
+            } else {
+                location.href = "blog_list.html?pindex="+(parseInt(pindex)-1);
+            }
+        }
+
+        //跳转到下一页
+        function doAfter() {
+            if(pindex >= totalpage) {
+                alert("目前已经在最后一页，无需继续跳转!");                
+            } else {
+                location.href = "blog_list.html?pindex="+(parseInt(pindex)+1);
+            }
+        }
     </script>
 </body>
 </html>

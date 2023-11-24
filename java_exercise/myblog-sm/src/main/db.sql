@@ -46,6 +46,9 @@ ALTER TABLE article ADD rcount INT;
 -- 修改article表中rcount文章阅读量的结构，给其添加默认值
 ALTER TABLE article ALTER COLUMN rcount SET DEFAULT 0;
 
+-- 修改user表的password结构，为了使用加密算法
+alter table user modify password varchar(65) not null;
+
 -- 构造一些初始数据，以便后续测试
 insert into user values(1, 'zouyujie', '123'),(2, 'zhangsan', '123');
 
