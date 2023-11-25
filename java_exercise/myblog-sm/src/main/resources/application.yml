@@ -6,6 +6,20 @@ spring:
     username: root
     password: 666666
     driver-class-name: com.mysql.cj.jdbc.Driver
+#redis的配置信息
+  redis:
+    port: 6379
+    host: 114.132.221.156
+    database: 2
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session
+      flush-mode: on_save
+  servlet:
+    session:
+      timeout: 1800
+
 #时间格式 只对Date生效 全局变量的格式化
   jackson:
     date-format: yyy-MM-dd HH:mm
@@ -28,6 +42,5 @@ logging:
     com:
       example:
         demo: debug
-
 
 
