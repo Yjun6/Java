@@ -58,8 +58,7 @@
                 </div>
                 <!-- 博客正文 -->
                 <div id="editorDiv">
-
-                <!-- </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -68,7 +67,7 @@
         var editormd;
         function initEdit(md){
             editormd = editormd.markdownToHTML("editorDiv", {
-            markdown : md, // Also, you can dynamic set Markdown text
+                markdown : md, // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
             });
@@ -92,6 +91,8 @@
                         //展示文章
                         var user = res.data.user;
                         var art = res.data.art;
+                        // alert(user!=null);
+
                         if (user!=null) {
                             //给用户对象设置值
                             if(user.photo!="") {
@@ -102,10 +103,14 @@
                         } else {
                             alert("抱歉：查询失败!"+res.msg);
                         }
+                        // alert(art!=null);
+
                         if (art!=null) {
                             jQuery("#title").html(art.title);
                             jQuery("#createtime").html(art.createtime);
                             jQuery("#rcount").html(art.rcount);
+                            alert(art.content);
+
                             initEdit(art.content);
                         } else {
                             alert("抱歉：查询失败!"+res.msg);

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * 异常的统一处理
  */
-//@RestControllerAdvice
+@RestControllerAdvice
 public class ExceptionAdvice {
 
     @ExceptionHandler(Exception.class)
