@@ -1,8 +1,0 @@
-2023-11-19 19:21:22.849  INFO 20500 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-11-19 19:21:22.850  INFO 20500 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-11-19 19:21:22.851  INFO 20500 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2023-11-19 20:05:09.309  INFO 27368 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Starting MyblogDemoApplication using Java 1.8.0_192 on Yu with PID 27368 (D:\Documents\code\Java\java_exercise\myblog-sm\target\classes started by Yu in D:\Documents\code\Java\java_exercise\myblog-sm)
-2023-11-19 20:05:09.315 DEBUG 27368 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Running with Spring Boot v2.7.17, Spring v5.3.30
-2023-11-19 20:05:09.316  INFO 27368 --- [restartedMain] com.example.demo.MyblogDemoApplication   : No active profile set, falling back to 1 default profile: "default"
-2023-11-19 20:05:09.367  INFO 27368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-11-19 20:05:09.368  INFO 27368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
