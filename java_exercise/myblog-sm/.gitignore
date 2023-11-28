@@ -34,5 +34,7 @@ build/
 
 
 # 忽略以数字开头的文件
-*.[0-9]*
-*.log
+*.*[0-9]
+*.log.*
+logs/
+springboot.log.*/

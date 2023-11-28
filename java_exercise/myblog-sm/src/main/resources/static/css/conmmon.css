@@ -8,7 +8,7 @@
 html, body {
     height: 100%;
     /* background-image: url(../img/cat.jpg); */
-    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+    background-image: linear-gradient(to top, #b7c9e6 0%, #fff 100%);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
