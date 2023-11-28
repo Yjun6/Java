@@ -1,8 +1,0 @@
-2023-11-20 23:01:43.989  INFO 5028 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Starting MyblogDemoApplication using Java 1.8.0_192 on Yu with PID 5028 (D:\Documents\code\Java\java_exercise\myblog-sm\target\classes started by Yu in D:\Documents\code\Java\java_exercise\myblog-sm)
-2023-11-20 23:01:43.994 DEBUG 5028 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Running with Spring Boot v2.7.17, Spring v5.3.30
-2023-11-20 23:01:43.995  INFO 5028 --- [restartedMain] com.example.demo.MyblogDemoApplication   : No active profile set, falling back to 1 default profile: "default"
-2023-11-20 23:01:44.062  INFO 5028 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-11-20 23:01:44.062  INFO 5028 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-11-20 23:01:45.638  INFO 5028 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-11-20 23:01:45.650  INFO 5028 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-11-20 23:01:45.650  INFO 5028 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.82]

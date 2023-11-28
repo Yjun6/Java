@@ -9,54 +9,32 @@ drop table if exists article;
 
 create table article (
     id int primary key auto_increment, -- 自增主键
-    title varchar(256), -- 博客的标题
-    content varchar(4096), -- 博客内容
-    createtime datetime, -- 创建时间
-    updatetime datetime, -- 修改时间
-    uid int, -- 博客的作者
-    state int -- 状态
+    title varchar(256) NOT NULL, -- 博客的标题
+    content varchar(4096) NOT NULL, -- 博客内容
+    createtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 创建时间
+    updatetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 修改时间
+    uid int NOT NULL, -- 博客的作者
+    state int, -- 状态
+    rcount INT DEFAULT 0-- 访问量
 );
 
 -- 用户表
 create table user (
     id int primary key auto_increment,
     username varchar(64) unique, -- 用户名，要求不能重复
-    password varchar(64), -- 密码
+    password varchar(65) not null, -- 密码 为了使用加密算法
     photo varchar(1024), -- 照片
-    createtime datetime, -- 创建时间
-    updatetime datetime, -- 修改时间
+    nickname varchar(20), -- 昵称
+    gender varchar(5), -- 性别
+    github varchar(50), -- github链接 https://github.com/Yjun6
+    createtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 创建时间
+    updatetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 修改时间
     state int -- 状态
-    -- github链接 ....
 );
 
--- 修改user表表结构
-alter table user add unique uq_username (username);
-
--- 修改article表结构 将添加时间改成当前系统时间
- ALTER TABLE article  MODIFY COLUMN createtime TIMESTAMP NOT NULL
- DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
-
--- 修改article表结构 将修改时间改成当前系统时间
- ALTER TABLE article  MODIFY COLUMN updatetime TIMESTAMP NOT NULL
- DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
-
--- 修改article表结构 添加rcount属性
-ALTER TABLE article ADD rcount INT;
-
--- 修改article表中rcount文章阅读量的结构，给其添加默认值
-ALTER TABLE article ALTER COLUMN rcount SET DEFAULT 0;
-
--- 修改user表的password结构，为了使用加密算法
-alter table user modify password varchar(65) not null;
-
+--  不能直接插入user，会和加盐算法冲突
 -- 构造一些初始数据，以便后续测试
-insert into user values(1, 'zouyujie', '123'),(2, 'zhangsan', '123');
-
-insert into article values(null, 'UDP和TCP的区别',
-    '一、关于有连是：一个客户端可以连接多个服务器，一个服全双工：一个通道，可以双向通信。半双工：一个通道，只能单向通信。',
-    '2023-10-15 20:58','2023-11-21 17:15',1,1);
-
 insert into article values(null, 'UDP和TCP的区别',
     '以对应多个客户端的连接. 二、关于可靠传输和不可TCP和文件操据报只能单向通信。',
-    '2023-10-15 20:58','2023-11-21 17:15',1,1);
+    '2023-10-15 20:58','2023-11-21 17:15',1,1,0);
 

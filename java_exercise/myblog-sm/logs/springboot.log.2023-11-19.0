@@ -1,6 +1,0 @@
-2023-11-19 14:47:47.793  INFO 1512 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Starting MyblogDemoApplication using Java 1.8.0_192 on Yu with PID 1512 (D:\Documents\code\Java\java_exercise\myblog-sm\target\classes started by Yu in D:\Documents\code\Java\java_exercise\myblog-sm)
-2023-11-19 14:47:47.795 DEBUG 1512 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Running with Spring Boot v2.7.17, Spring v5.3.30
-2023-11-19 14:47:47.796  INFO 1512 --- [restartedMain] com.example.demo.MyblogDemoApplication   : No active profile set, falling back to 1 default profile: "default"
-2023-11-19 14:47:47.924  INFO 1512 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-11-19 14:47:47.924  INFO 1512 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-11-19 14:47:48.712  WARN 1512 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.example.demo]' package. Please check your configuration.

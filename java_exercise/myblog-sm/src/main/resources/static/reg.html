@@ -40,6 +40,22 @@
                 <input type="password" id="password2">
             </div>
             <div class="row">
+                <span>GitHub链接:</span>
+                <input type="text" id="github">
+            </div>
+            <div class="row">
+                <span>昵称:</span>
+                <input type="text" id="nickname">
+            </div>
+            <div class="row">
+                <span>性别:</span>
+                <select id="gender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+            <div class="row">
                 <button id="submit" onclick="mysub()">提交</button>
             </div>
         </div>
@@ -51,17 +67,32 @@
             var username = jQuery("#username");
             var password = jQuery("#password");
             var password2 = jQuery("#password2");
+            var github = jQuery("#github");
+            var nickname = jQuery("#nickname");
+            var gender = jQuery("#gender");
             if (username.val().trim()=="") {
                 alert("请先输入用户名");
                 username.focus(); //光标的移动
                 return false;
-            } else if (password.val().trim()=="") {
+            } 
+            if (password.val().trim()=="") {
                 alert("请先输入密码");
                 password.focus();
                 return false;
-            } else if (password2.val().trim()=="") {
+            } 
+            if (password2.val().trim()=="") {
                 alert("请先输入密码");
                 password2.focus();
+                return false;
+            }
+            if (nickname.val().trim()=="") {
+                alert("请先输入昵称");
+                nickname.focus();
+                return false;
+            }
+            if (github.val().trim()=="") {
+                alert("请先输入GitHub链接");
+                github.focus();
                 return false;
             }
             //校验两次密码是否一致
@@ -75,7 +106,10 @@
                 type: "post", //业内规范：查询是get,非查询是post
                 data: {
                     "username": username.val().trim(),
-                    "password":password.val().trim()
+                    "password":password.val().trim(),
+                    "nickname":nickname.val().trim(),
+                    "gender":gender.val().trim(),
+                    "github":github.val().trim()
                 },
                 success: function(body) {
                     //3.将后端返回数据展示给用户
