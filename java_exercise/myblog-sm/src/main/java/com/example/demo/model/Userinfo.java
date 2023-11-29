@@ -10,6 +10,9 @@ public class Userinfo implements Serializable {
     private int id;
     private String username;
     private String password;
+    private String nickname;
+    private String gender;
+    private String github;
     private String photo;
     private LocalDateTime createtime;
     private LocalDateTime updatetime;

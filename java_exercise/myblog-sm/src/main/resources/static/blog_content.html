@@ -37,7 +37,7 @@
             <div class="card">
                 <img id="photo" src="img/avatar.png" class="avtar" alt="">
                 <h3 id="username"></h3>
-                <a href="https://www.javacn.site">github 地址</a>
+                <a href="" id="github">github 地址</a>
                 <div class="counter">
                     <span>文章</span>
                     <!-- <span>分类</span> -->
@@ -76,14 +76,12 @@
         }
         
         function init() {
-            console.log(555);
             //1.校验参数
             if (id==null || id<=0) {
                 alert("参数有误!");
                 return false;
             }
 
-            console.log(444);
             //2.请求后端获取数据
             jQuery.ajax({
                 url: "/art/detail",
@@ -92,25 +90,21 @@
                     "id": id
                 },
                 success: function(res) {
-                    console.log(333);
                     if (res.code==200 && res.data!=null) {
                         //展示文章
                         var user = res.data.user;
                         var art = res.data.art;
-                        // alert(user!=null);
-                        console.log(222);
                         if (user!=null) {
                             //给用户对象设置值
-                            if(user.photo!="") {
-                                jQuery("#photo").attr("src",user.photo);
-                            }
-                            jQuery("#username").html(user.username);
-                            jQuery("#artcount").html(user.artCount);                     
+                            // if(user.photo!="") {
+                            //     jQuery("#photo").attr("src",user.photo);
+                            // }
+                            jQuery("#username").html(user.nickname);
+                            jQuery("#artcount").html(user.artCount);    
+                            jQuery("#github").attr('href', user.github);                   
                         } else {
                             alert("抱歉：查询失败!"+res.msg);
                         }
-                        // alert(art!=null);
-                        console.log(111);
                         if (art!=null) {
                             jQuery("#title").html(art.title);
                             jQuery("#createtime").html(art.createtime);

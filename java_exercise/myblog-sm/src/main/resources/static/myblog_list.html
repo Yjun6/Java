@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/blog_list.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/logout.js"></script>
+    <script src="js/urlutils.js"> </script>
 </head>
 
 <body>
@@ -21,6 +22,7 @@
         <span class="spacer"></span>
         <a href="blog_list.html">主页</a>
         <a href="blog_add.html">写博客</a>
+        <a href="" id="mod">修改个人信息</a>
         <a href="javascript:logout()">注销</a>
     </div>
     <!-- 版心 -->
@@ -28,16 +30,16 @@
         <!-- 左侧个人信息 -->
         <div class="container-left">
             <div class="card">
-                <img src="img/avatar.png" class="avtar" alt="">
-                <h3>小可爱</h3>
-                <a href="http:www.github.com">github 地址</a>
+                <img id="photo" src="img/avatar.png" class="avtar" alt="">
+                <h3 id="username"></h3>
+                <a href="" id="github">github 地址</a>
                 <div class="counter">
                     <span>文章</span>
-                    <span>分类</span>
+                    <!-- <span>分类</span> -->
                 </div>
                 <div class="counter">
-                    <span>2</span>
-                    <span>1</span>
+                    <span id="artcount"></span>
+                    <!-- <span>1</span> -->
                 </div>
             </div>
         </div>
@@ -65,10 +67,26 @@
                 url: "/art/mylist",
                 type: "get",
                 data: {},
-                success: function(ret) {
-                    if (ret.code==200) {
-                        //请求成功
-                        var artList = ret.data; 
+                success: function(res) {
+                    if (res.code==200 && res.data!=null) {
+                        //请求成功\
+                        var user = res.data.user;
+                        var artList = res.data.art;
+                        console.log(res.data.art);
+                        if (user!=null) {
+                            //给用户对象设置值
+                            // if(user.photo!="") {
+                            //     jQuery("#photo").attr("src",user.photo);
+                            // } else {
+                            //     jQuery("#photo").attr("src","img/avatar.png");
+                            // }
+                            jQuery("#mod").attr('href','modify_msg.html?id='+user.id);    
+                            jQuery("#username").html(user.nickname);
+                            jQuery("#artcount").html(user.artCount);   
+                            jQuery("#github").attr('href', user.github);              
+                        } else {
+                            alert("抱歉：查询失败!"+res.msg);
+                        } 
                         var createHtml = "";  
                         if (artList==null || artList.length==0) {
                             //未发表文章
@@ -86,7 +104,7 @@
                         }
                         jQuery("#artListDiv").html(createHtml);
                     } else {
-                        alert("抱歉，操作失败!"+ret.msg);
+                        alert("抱歉，操作失败!"+res.msg);
                         location.href="login.html";
                     }
                 }

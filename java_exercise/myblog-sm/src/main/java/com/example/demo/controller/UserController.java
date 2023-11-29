@@ -85,6 +85,58 @@ public class UserController {
         return ResultAjax.succ(1);
     }
 
+    /**
+     * 返回用户信息
+     * */
+    @RequestMapping("/getuser")
+    public ResultAjax getuser(Integer id) {
+        //1.验证id
+        if(id==null || id<=0) {
+            return ResultAjax.fail(-1,"参数错误！");
+        }
+        //2.根据id查询用户信息
+        UserinfoVO userinfoVO = userService.getUserById(id);
+        //3.返回信息
+        return ResultAjax.succ(userinfoVO);
+    }
+
+    /**
+     * 用户确定修改信息
+     *  username
+     *  password
+     *  nickname
+     *  gender
+     *  github
+     * */
+    @RequestMapping("/mod")
+    public ResultAjax mod(Userinfo userinfo,String oldpassword,HttpServletRequest request) {
+        /**
+         *         articleinfo.setUid(userinfo.getId());
+         *         return ResultAjax.succ(articleService.update(articleinfo));
+         */
+        //1.参数校验
+        if (userinfo==null || !StringUtils.hasLength(userinfo.getUsername()) || !StringUtils.hasLength(userinfo.getPassword())
+        || !StringUtils.hasLength(userinfo.getNickname()) || !StringUtils.hasLength(userinfo.getGender())
+        || !StringUtils.hasLength(userinfo.getGithub())) {
+            return ResultAjax.fail(-1,"非法参数");
+        }
+        //2.获取登录用户
+        Userinfo olduserinfo = SessionUtils.getUser(request);
+        if (olduserinfo == null) {
+            return ResultAjax.fail(-2,"请先登录");
+        }
+        //3.校验该信息是否属于这个用户
+        //校验密码是否匹配
+        if(PasswordUtils.decrypt(oldpassword,olduserinfo.getPassword()) == false) {
+            return ResultAjax.fail(-1,"密码错误，请重新输入");
+        }
+        //4.执行修改操作
+        userinfo.setId(olduserinfo.getId());
+        //密码加盐
+        userinfo.setPassword(PasswordUtils.encrypt(userinfo.getPassword()));
+        //5.将结果返回给前端
+        return ResultAjax.succ(userService.updateById(userinfo));
+    }
 
     @RequestMapping("/test")
     public int test() {

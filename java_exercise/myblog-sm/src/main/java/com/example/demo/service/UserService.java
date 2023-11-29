@@ -22,4 +22,8 @@ public class UserService {
     public UserinfoVO getUserById(Integer uid) {
         return userMapper.getUserById(uid);
     }
+
+    public int updateById(Userinfo userinfo) {
+        return userMapper.updateById(userinfo);
+    }
 }

@@ -1,8 +1,0 @@
-2023-11-21 22:57:50.659  INFO 84 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-11-21 22:57:50.677  INFO 84 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-11-21 22:57:50.678  INFO 84 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.82]
-2023-11-21 22:57:50.785  INFO 84 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-11-21 22:57:50.785  INFO 84 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1461 ms
-2023-11-21 22:57:51.743  INFO 84 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-11-21 22:57:51.770  INFO 84 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-11-21 22:57:51.781  INFO 84 --- [restartedMain] com.example.demo.MyblogDemoApplication   : Started MyblogDemoApplication in 2.93 seconds (JVM running for 3.413)

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.common.ResultAjax;
 import com.example.demo.common.SessionUtils;
+import com.example.demo.common.VOTrans;
 import com.example.demo.model.Articleinfo;
 import com.example.demo.model.Userinfo;
 import com.example.demo.model.vo.UserinfoVO;
@@ -35,14 +36,18 @@ public class ArticleController {
     private static final int _DESC_LENGTH = 120;//文章摘要长度
 
     @RequestMapping("/mylist")
-    public ResultAjax myList(HttpServletRequest request) {
+    public ResultAjax myList(HttpServletRequest request) throws ExecutionException, InterruptedException {
         //1.得到当前登录用户
         Userinfo userinfo = SessionUtils.getUser(request);
         if (userinfo==null) {
             return ResultAjax.fail(-1,"请先登录");
         }
         //2.根据用户id查询此用户所有文章
-        List<Articleinfo> list = articleService.getListByUid(userinfo.getId());
+        FutureTask<List<Articleinfo>> userTask = new FutureTask(()->{
+            return articleService.getListByUid(userinfo.getId());
+        });
+        taskExecutor.submit(userTask);
+        List<Articleinfo> list = userTask.get();
         //处理文章的摘要
          if (list!=null && list.size()>0) {
              //并发处理
@@ -52,8 +57,20 @@ public class ArticleController {
                  }
              });
          }
-        //3.返回给前端
-        return ResultAjax.succ(list);
+         //3.获取当前用户共发布几篇文章
+        FutureTask<Integer> artCountTask = new FutureTask<>(()->{
+            return articleService.getArtCountByUid(userinfo.getId());
+        });
+        taskExecutor.submit(artCountTask);
+        int artCount = artCountTask.get();
+        UserinfoVO userinfoVO = new UserinfoVO();
+        VOTrans.transVO(userinfoVO,userinfo);
+        userinfoVO.setArtCount(artCount);
+        //4.返回给前端
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("user", userinfoVO);
+        result.put("art",list);
+        return ResultAjax.succ(result);
     }
 
     /**删除文章*/
