@@ -1,5 +1,8 @@
 package com.example.mq.mqserver.core;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +21,7 @@ public class Exchange {
     //暂时没完善（RabbitMQ)有这个功能
     private Boolean autoDelete  = false;
     //一些额外的参数 暂时没完善
+    //为了储存argument，需要把map转成json格式，再存到数据库里面
     private Map<String,Object> argument = new HashMap<>();
 
 
@@ -53,11 +57,20 @@ public class Exchange {
         this.autoDelete = autoDelete;
     }
 
-    public Map<String, Object> getArgument() {
-        return argument;
+    public String getArgument() {
+        //把当前argument参数，从Map转成String类型(JSON)
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(argument);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        //如果代码抛出异常，返回一个空的JSON字符串
+        return "{}";
     }
 
-    public void setArgument(Map<String, Object> argument) {
-        this.argument = argument;
+    //从数据库读数据之后，构造Exchange对象，会自动调用这个set
+    public void setArgument(String argument) {
+        //解析
     }
 }
