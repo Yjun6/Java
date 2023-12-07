@@ -1,6 +1,7 @@
 package com.example.mq.mqserver.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
@@ -71,6 +72,13 @@ public class Exchange {
 
     //从数据库读数据之后，构造Exchange对象，会自动调用这个set
     public void setArgument(String argument) {
-        //解析
+        //把参数中的argument按照json格式解析，转成Map对象
+        ObjectMapper objectMapper = new ObjectMapper();
+        //如果这里是转成简单数据类型，直接写该数据类型即可
+        try {
+            this.argument = objectMapper.readValue(argument, new TypeReference<HashMap<String,Object>>() {});
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }
