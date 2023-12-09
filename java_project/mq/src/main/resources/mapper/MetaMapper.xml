@@ -37,6 +37,10 @@
         delete from exchange where name=#{exchangeName};
     </delete>
 
+    <select id="selectAllExchange" resultType="com.example.mq.mqserver.core.Exchange">
+        select * from exchange;
+    </select>
+
     <insert id="insertQueue" parameterType="com.example.mq.mqserver.core.MSGQueue">
         insert into queue values(#{name},#{durable},#{exclusive},#{autoDelete},#{argument});
     </insert>
@@ -44,6 +48,10 @@
     <delete id="deleteQueue" parameterType="java.lang.String">
         delete from queue where name=#{queueName};
     </delete>
+
+    <select id="selectAllMSGQueue" resultType="com.example.mq.mqserver.core.MSGQueue">
+        select * from queue;
+    </select>
 
     <insert id="insertBinding" parameterType="com.example.mq.mqserver.core.Binding">
         insert into binding values(#{exchangeName},#{queueName},#{bindingKey});
@@ -54,5 +62,9 @@
         where exchangeName=#{exchangeName}
         and queueName=#{queueName} and bindingKey=#{bindingKey};
     </delete>
+
+    <select id="selectAllBinding" resultType="com.example.mq.mqserver.core.Binding">
+        select * from binding;
+    </select>
 
 </mapper>

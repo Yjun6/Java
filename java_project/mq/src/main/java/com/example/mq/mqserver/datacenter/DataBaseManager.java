@@ -1,11 +1,14 @@
 package com.example.mq.mqserver.datacenter;
 
 import com.example.mq.MqApplication;
+import com.example.mq.mqserver.core.Binding;
 import com.example.mq.mqserver.core.Exchange;
 import com.example.mq.mqserver.core.ExchangeType;
+import com.example.mq.mqserver.core.MSGQueue;
 import com.example.mq.mqserver.mapper.MetaMapper;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * 对数据库进行管理
@@ -34,7 +37,7 @@ public class DataBaseManager {
     /*插入默认数据
     * rabbitmq : 带有一个匿名的交换机 类型是DIRECT
     * */
-    private void createDefaultData() {
+    public void createDefaultData() {
         //构造一个默认的交换机
         Exchange exchange = new Exchange();
         exchange.setName("");
@@ -45,10 +48,21 @@ public class DataBaseManager {
         System.out.println("[DataBaseManager] 创建初始数据完成！");
     }
 
+    /*删除数据库
+    * 本质是删除文件夹*/
+    public void delete() {
+        boolean ret = (new File("./data/meta.db")).delete();
+        if (ret) {
+            System.out.println("[DataBaseManager] 数据库删除完成！");
+        } else {
+            System.out.println("[DataBaseManager] 数据库删除失败！");
+        }
+    }
+
     /*建表
     * 这里不需要建库，因为在首次执行这里时，mybatis已经帮我们完成了建库操作
     * */
-    private void createTable() {
+    public void createTable() {
         mapper.createExchangeTable();
         mapper.createQueueTable();
         mapper.createBindingTable();
@@ -61,5 +75,37 @@ public class DataBaseManager {
         return (new File("./data/meta.db").exists());
     }
 
+    //对数据库其他的方法进行完成
+    public void deleteExchange(String exchangeName) {
+        mapper.deleteExchange(exchangeName);
+    }
+
+    public void insertQueue(MSGQueue msgQueue) {
+        mapper.insertQueue(msgQueue);
+    }
+
+    public List<Exchange> selectAllExchange() {
+        return mapper.selectAllExchange();
+    }
+
+    public void deleteQueue(String queueName) {
+        mapper.deleteQueue(queueName);
+    }
+
+    public  List<MSGQueue> selectAllMSGQueue() {
+        return mapper.selectAllMSGQueue();
+    }
+
+    public void insertBinding(Binding binding) {
+        mapper.insertBinding(binding);
+    }
+
+    public void deleteBinding(Binding binding) {
+        mapper.deleteBinding(binding);
+    }
+
+    public List<Binding> selectAllBinding() {
+        return mapper.selectAllBinding();
+    }
 
 }
