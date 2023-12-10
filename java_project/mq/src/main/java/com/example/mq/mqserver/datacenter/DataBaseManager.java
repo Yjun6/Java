@@ -53,10 +53,18 @@ public class DataBaseManager {
     public void delete() {
         boolean ret = (new File("./data/meta.db")).delete();
         if (ret) {
-            System.out.println("[DataBaseManager] 数据库删除完成！");
+            System.out.println("[DataBaseManager] 数据库文件夹删除完成！");
         } else {
-            System.out.println("[DataBaseManager] 数据库删除失败！");
+            System.out.println("[DataBaseManager] 数据库文件夹删除失败！");
         }
+//        //也要记得删除文件目录
+//        //在删除目录之前必须保证目录是空的
+//        boolean r = (new File("./data")).delete();
+//        if (r) {
+//            System.out.println("[DataBaseManager] 数据库文件目录删除完成！");
+//        } else {
+//            System.out.println("[DataBaseManager] 数据库文件目录删除失败！");
+//        }
     }
 
     /*建表

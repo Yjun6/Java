@@ -1,10 +1,18 @@
 package com.example.mq.mqserver.datacenter;
 
 import com.example.mq.MqApplication;
+import com.example.mq.mqserver.core.Binding;
+import com.example.mq.mqserver.core.Exchange;
+import com.example.mq.mqserver.core.ExchangeType;
+import com.example.mq.mqserver.core.MSGQueue;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,5 +41,29 @@ class DataBaseManagerTest {
         MqApplication.context.close();
         dataBaseManager.delete();
     }
+
+    @Test
+    void init() {
+        List<Exchange> exchangeList = dataBaseManager.selectAllExchange();
+        List<MSGQueue> queueList = dataBaseManager.selectAllMSGQueue();
+        List<Binding> bindingList = dataBaseManager.selectAllBinding();
+
+        //使用sout方法不如断言 断言的解释更清晰
+        //没有数据的打印就是代表正确
+        Assertions.assertEquals(1,exchangeList.size());
+        Assertions.assertEquals("",exchangeList.get(0).getName());
+        Assertions.assertEquals(ExchangeType.DIRECT,exchangeList.get(0).getType());
+        Assertions.assertEquals(0,queueList.size());
+        Assertions.assertEquals(0,bindingList.size());
+    }
+
+
+
+
+
+
+
+
+
 
 }
