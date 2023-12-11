@@ -22,7 +22,7 @@ public class MSGQueue {
     //自动删除 没人使用就删除false 表示不会自动删除  true表示删除
     private Boolean autoDelete = false;
     //扩展参数暂时没实现
-    private Map<String,Object> arguments = new HashMap<>();
+    private Map<String,Object> argument = new HashMap<>();
 
     public String getName() {
         return name;
@@ -56,20 +56,28 @@ public class MSGQueue {
         this.autoDelete = autoDelete;
     }
 
-    public String getArguments() {
+    public String getArgument() {
         try {
-            return (new ObjectMapper()).writeValueAsString(arguments);
+            return (new ObjectMapper()).writeValueAsString(argument);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
         return "{}";
     }
 
-    public void setArguments(String arguments) {
+    public void setArgument(String argument) {
         try {
-            this.arguments = (new ObjectMapper()).readValue(arguments, new TypeReference<HashMap<String, Object>>() {});
+            this.argument = (new ObjectMapper()).readValue(argument, new TypeReference<HashMap<String, Object>>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setArgument(String key,Object value) {
+        this.argument.put(key,value);
+    }
+
+    public Object getArgumentValue(String key) {
+        return this.argument.get(key);
     }
 }

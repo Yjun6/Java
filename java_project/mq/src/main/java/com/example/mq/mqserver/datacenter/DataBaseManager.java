@@ -48,6 +48,11 @@ public class DataBaseManager {
         System.out.println("[DataBaseManager] 创建初始数据完成！");
     }
 
+    /*插入交换机*/
+    public  void insertExchange(Exchange exchange) {
+        mapper.insertExchange(exchange);
+    }
+
     /*删除数据库
     * 本质是删除文件夹*/
     public void delete() {
@@ -57,14 +62,6 @@ public class DataBaseManager {
         } else {
             System.out.println("[DataBaseManager] 数据库文件夹删除失败！");
         }
-//        //也要记得删除文件目录
-//        //在删除目录之前必须保证目录是空的
-//        boolean r = (new File("./data")).delete();
-//        if (r) {
-//            System.out.println("[DataBaseManager] 数据库文件目录删除完成！");
-//        } else {
-//            System.out.println("[DataBaseManager] 数据库文件目录删除失败！");
-//        }
     }
 
     /*建表

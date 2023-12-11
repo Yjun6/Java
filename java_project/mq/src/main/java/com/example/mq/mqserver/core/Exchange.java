@@ -81,4 +81,12 @@ public class Exchange {
             e.printStackTrace();
         }
     }
+
+    public void setArgument(String key, Object value) {
+        this.argument.put(key,value);
+    }
+
+    public  Object getArgumentValue(String key) {
+        return this.argument.get(key);
+    }
 }
