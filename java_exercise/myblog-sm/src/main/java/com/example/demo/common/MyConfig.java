@@ -28,4 +28,16 @@ public class MyConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/blog_content.html")
                 .excludePathPatterns("/art/detail");
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+

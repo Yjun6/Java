@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/jquery.min.js"></script>
+	<title>玩具租赁系统</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			padding: 10px;
+			background-color: #333;
+            color: #fff;
+		}
+		form {
+			max-width: 500px;
+			margin: auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+		}
+		input[type=text], select {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		input[type=submit] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+		table {
+			margin-top: 50px;
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+		footer {
+		background-color: #333;
+		color: #fff;
+		text-align: center;
+		padding: 10px;
+	    }
+		footer {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 20px 0;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<h1>玩具租赁系统</h1>
+    <nav>
+        <a href="show.html">查看玩具信息</a> | 
+		<a href="admin.html">返回--管理员界面</a>
+    </nav>
+	<form>
+		<h2>添加玩具</h2>
+
+		<label for="name">名称:</label>
+		<input type="text" id="name" name="name" required>
+        
+		<label for="price">价格:</label>
+		<input type="text" id="price" name="price" required>
+
+		<label for="age">数量:</label>
+		<input type="text" id="age" name="age" required>
+
+		<label for="type">类型:</label>
+		<select id="type" name="type">
+			<option value="">请选择</option>
+			<option value="益智类">益智类</option>
+			<option value="玩偶类">玩偶类</option>
+			<option value="拼图类">拼图类</option>
+			<option value="卡通类">卡通类</option>
+			<option value="操作类">操作类</option>
+			<option value="模型类">模型类</option>
+			<option value="积木类">积木类</option>
+			<option value="其他">其他</option>
+		</select>
+
+		<input type="submit" value="添加玩具" onclick="addtoy()">
+	</form>
+
+	<table id="table">
+		<!-- <h2>玩具信息</h2>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>类型</th>
+				<th>价格</th>
+                <th>库存</th>
+			</tr>
+		</thead>
+		<tbody> -->
+			<!-- <tr>
+				<td>小熊玩偶</td>
+				<td>玩偶类</td>
+				<td>$19.99</td>
+                <td>50</td>
+			</tr> -->
+		<!-- </tbody> -->
+	</table>
+	<footer>
+	版权所有 © 2023 玩具管理 计科2103班第一小组
+    </footer>
+	<script>
+		// console.log("000");
+		//初始化界面
+		function init() {
+			jQuery.ajax({
+                url: "/toy/init",
+                type: "get", //业内规范：查询是get,非查询是post
+                data: {
+                },
+                success: function(res) {
+					console.log("111");
+                    //3.将后端返回数据展示给用户
+                    if (res.code==200 && res.data!=null) {
+						console.log(res);
+                        //展示列表
+						var createHtml = "";
+                        if (res.data!=null && res.data.length>0){
+							console.log("333");
+                            //有玩具
+							// createHtml += "<h2>玩具信息</h2>";
+							createHtml += "<thead>";
+							createHtml += "<tr>";
+							createHtml += "<th>名称</th>";
+							createHtml += "<th>类型</th>";
+							createHtml += "<th>价格</th>";
+							createHtml += "<th>库存</th>";
+							createHtml += "</tr></thead><tbody>";
+							createHtml += "</tbody>";
+							var toy = res.data;
+                            for(var i=0; i<toy.length; i++) {
+                                //循环加入玩具对象
+                                var art = toy[i]; // 对象
+                                createHtml += '<tr>';
+                                createHtml += '<td>'+art.name+'</td>';
+                                createHtml += '<td>'+art.situation+'</td>';
+                                createHtml += '<td>'+art.price+'</td>';
+                                createHtml += '<td>'+art.inventory+'</td>';
+                                createHtml += '</tr>';
+                            }
+						 } else {
+							console.log("444");
+                            //暂无玩具信息
+                            createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无玩具!</h3>';
+                        }
+                        jQuery("#table").html(createHtml);
+                    } else {
+						alert("抱歉：查询失败！"+res.msg);
+						location.href = "login.html";
+					} 
+                }
+            });
+		}
+		init();
+
+		//添加玩具信息
+		function addtoy() {
+			//获取数据
+			var name = jQuery("#name");   
+            var price = jQuery("#price");
+            var inventory = jQuery("#age");
+			var situation = jQuery("#type");
+			if (name.val().trim()=="") {
+                alert("请先输入名字");
+                name.focus();
+                return false;
+            }
+			if (price.val().trim()=="") {
+                alert("请先输入价格");
+                price.focus();
+                return false;
+            }
+			if (inventory.val().trim()=="") {
+                alert("请先输入数量");
+                inventory.focus();
+                return false;
+            }
+            if (situation.val().trim()=="") {
+                alert("请先选择类型");
+                situation.focus();
+                return false;
+            }
+			jQuery.ajax({
+                url: "/toy/add",
+                type: "post", //业内规范：查询是get,非查询是post
+                data: {
+					"name":name.val().trim(),
+					"situation":situation.val().trim(),
+					"price":price.val().trim(),
+					"inventory":inventory.val().trim()
+                },
+                success: function(res) {
+                    //3.将后端返回数据展示给用户
+                    if (res.code==200 && res.data==1) {
+						//添加成功
+						alert("添加成功");
+						init();
+                    } else if(res.data==-2){
+						alert("抱歉：添加失败！"+res.msg);
+						location.href = "login.html";
+					} else {
+                        alert("抱歉：添加失败！"+res.msg);
+                    }
+                }
+            });
+		}
+	</script>
+</body>
+</html>

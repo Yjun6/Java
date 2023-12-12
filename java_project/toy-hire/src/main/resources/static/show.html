@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js"></script>
+    <title>玩具管理</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        .toy-card {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>玩具租赁管理--查看</h1>
+    </header>
+    <nav>
+        <a href="add.html">添加玩具</a> | 
+        <a href="admin.html">返回--管理员界面</a>
+    </nav>
+    <section id="view_toys">
+        <!-- <h2>所有玩具信息</h2>
+        <div class="toy-card">
+            <h3>玩具名称：小熊玩偶</h3>
+            <p>库存数量：50</p>
+            <td><a href="#" class="button" onclick="deleteToy('小熊玩偶')">删除玩具</a></td>
+            <td><a href="toy_mod.html" class="button">修改玩具信息</a></td>
+        </div>      -->
+    </section>
+</body>
+<script>
+        //初始化界面
+    function init() {
+        jQuery.ajax({
+            url: "/toy/init",
+            type: "get", //业内规范：查询是get,非查询是post
+            data: {
+            },
+            success: function(res) {
+                console.log("111");
+                //3.将后端返回数据展示给用户
+                if (res.code==200 && res.data!=null) {
+                    console.log(res);
+                    //展示列表
+                    var createHtml = "";
+                    if (res.data!=null && res.data.length>0){
+                        console.log("333");
+                        //有玩具
+                        createHtml += "<h2>玩具信息</h2>";
+                        var toy = res.data;
+                        for(var i=0; i<toy.length; i++) {
+                            //循环加入玩具对象
+                            var art = toy[i]; // 对象
+                            createHtml += '<div class="toy-card">';
+                            createHtml += '<h3>玩具名称：'+art.name+'</h3>';
+                            createHtml += '<p>库存数量：'+art.inventory+'</p>';
+                            createHtml += '<p>玩具价格：'+art.price+'</p>';
+                            createHtml += '<td><a onclick="del('+art.id+')" class="detail"> 删除 </a></td>';
+                            createHtml += '<td><a href="toy_mod.html?id='+art.id+'" class="detail">修改玩具信息</a></td>';
+                            createHtml += '</div>';
+                        }
+                        } else {
+                        console.log("444");
+                        //暂无玩具信息
+                        createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无玩具!</h3>';
+                    }
+                    jQuery("#view_toys").html(createHtml);
+                } else {
+                    alert("抱歉：查询失败！"+res.msg);
+                    location.href = "login.html";
+                } 
+            }
+        });
+    }
+    init();
+
+
+    //根据id 删除玩具
+    function del(id) {
+            //1.参数校验
+            if (id=="" || id<=0) {
+                alert("参数错误");
+                return false;
+            }
+            //2.将数据返回给后端，进行删除操作
+            jQuery.ajax({
+                url: "/toy/del",
+                type: "post",
+                data: {
+                    "id": id
+                },
+                success: function(res) {
+                    //3.将结果返回给用户
+                    if (res.code==200 && res.data==1) {
+                        alert("恭喜：删除成功!");
+                        //刷新当前页面
+                        location.href = location.href;
+                    } else {
+                        //删除失败
+                        alert("抱歉：删除失败！"+res.msg);
+                    }
+                }
+            });
+        }
+</script>
+</html>

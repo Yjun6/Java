@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>玩具租赁系统 - 管理员界面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #555;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 50px 0;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 50px;
+    }
+
+    .menu, .content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu {
+      margin-right: 20px;
+    }
+
+    .menu h2, .content h2 {
+      color: #333;
+    }
+
+    .menu a, .content a {
+      display: block;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    footer {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 20px 0;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>玩具租赁系统</h1>
+  </header>
+  <!-- <nav>
+    <a href="#admin">管理员页面</a>
+    <a href="l_r_information.html">玩具租借信息</a>
+  </nav> -->
+  <h2>管理员界面</h2>
+  <div class="container">
+    <div class="menu">
+      <h2>玩具管理</h2>
+      <a href="add.html">添加玩具</a>
+      <a href="show.html">查看玩具信息</a>
+      <a href="l_r_information.html">玩具租赁信息</a>
+      <a href="return_information.html">玩具归还信息</a>
+    </div>
+    <div class="content">
+      <h2>用户管理</h2>
+      <a href="user_information.html">查看用户信息</a>
+    </div>
+  </div>
+  <footer>
+    版权所有 © 2023 玩具租聘系统 计科2103班第一小组
+  </footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>玩具租赁系统 - 用户界面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #555;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 50px 0;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 50px;
+    }
+
+    .menu, .content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu {
+      margin-right: 20px;
+    }
+
+    .menu h2, .content h2 {
+      color: #333;
+    }
+
+    .menu a, .content a {
+      display: block;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    footer {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 20px 0;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+  </style>
+</head>
+<body>
+    <header>
+        <h1>玩具租赁系统</h1>
+    </header>
+    <h2>用户界面</h2>
+  <div class="container">
+    <div class="menu">
+      <h2>玩具管理</h2>
+      <a href="show_lease.html">查看可租赁玩具</a>
+      <a href="lease.html">租赁玩具</a>
+      <a href="return.html">归还玩具</a>
+    </div>
+    <div class="content">
+      <h2>个人信息管理</h2>
+      <a href="personal_information.html">查看个人信息</a>
+    </div>
+  </div>
+  <footer>
+    版权所有 © 2023 玩具租聘系统 计科2103班第一小组
+  </footer>
+</body>
+</html>

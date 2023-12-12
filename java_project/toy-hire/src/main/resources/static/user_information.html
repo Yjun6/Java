@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js"></script>
+	<title>玩具租赁系统--用户管理</title>
+	<style>
+		header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h2 {
+			text-align: center;
+			margin-top: 50px;
+			color: #333;
+		}
+		table {
+			margin-top: 50px;
+			margin-left: auto;
+			margin-right: auto;
+			border-collapse: collapse;
+			width: 80%;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		table thead {
+			background-color: #353336;
+			color: white;
+		}
+		table th,
+		table td {
+			padding: 12px;
+			text-align: left;
+		}
+		table tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+	<header>
+        <h1>玩具租赁系统</h1>
+    </header>
+	<nav>
+		<a href="admin.html">管理员页面</a> 
+	</nav>
+	<div id="div">
+		<!-- <h2>用户信息</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>邮箱</th>
+					<th>电话</th>
+					<th>地址</th>
+					<th>玩具租金</th>
+					<th>会员点数</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>M001</td>
+					<td>张三</td>
+					<td>138123@example.com</td>
+					<td>13812345678</td>
+					<td>湖南省衡阳市</td>
+					<td>500元</td>
+					<td>100点</td>
+				</tr>
+			</tbody>
+		</table> -->
+	</div>
+</body>
+<script>
+	//页面初始化
+	function init() {
+		jQuery.ajax({
+            url: "/manager/initUser",
+            type: "get", //业内规范：查询是get,非查询是post
+            data: {
+            },
+            success: function(res) {
+                //3.将后端返回数据展示给用户
+                if (res.code==200 && res.data!=null) {
+                    console.log(res);
+                    //展示列表
+                    var createHtml = "";
+                    if (res.data!=null && res.data.length>0){
+                        console.log("333");
+                        //有玩具
+                        createHtml += "<h2>用户信息</h2><table><thead><tr><th>编号</th><th>姓名</th><th>邮箱</th>";
+						createHtml += "<th>电话</th><th>地址</th><th>玩具租金</th><th>会员点数</th></tr></thead><tbody>";
+                        var user = res.data;
+                        for(var i=0; i<user.length; i++) {
+                            //循环加入对象
+                            var art = user[i]; // 对象
+                            createHtml += '<tr><td>'+art.id+'</td>';
+                            createHtml += '<td>'+art.username+'</td>';
+                            createHtml += '<td>'+art.email+'</td>';
+                            createHtml += '<td>'+art.phone+'</td>';
+                            createHtml += '<td>'+art.address+'</td>';
+                            createHtml += '<td>'+art.cash+'</td>';
+                            createHtml += '<td>'+art.points+'</td></tr>';
+                        }
+						createHtml += "</tbody></table>";
+					} else {
+						console.log("444");
+						//暂无玩具信息
+						createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无用户!</h3>';
+                    }
+                    jQuery("#div").html(createHtml);
+                } else {
+                    alert("抱歉：查询失败！"+res.msg);
+                    location.href = "login.html";
+                } 
+            }
+        });
+	}
+	init();
+</script>
+</html>

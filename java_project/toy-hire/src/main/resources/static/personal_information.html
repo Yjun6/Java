@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js"></script>
+  <title>个人信息</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: #fff;
+      margin: 0;
+    }
+
+    h2 {
+			text-align: center;
+			margin-top: 50px;
+			color: #333;
+	}
+    
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #555;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    .info-section {
+      margin-bottom: 40px;
+    }
+    
+    .info-section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    .info-section table {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+        <h1>玩具租赁系统</h1>
+  </header>
+  <nav>
+    <a href="user.html">返回--用户界面</a>
+  </nav>
+  <h2>相关信息</h2>
+  <div class="container">
+    <div class="info-section">
+      <h2>个人信息</h2>
+      <table>
+        <tr>
+          <th>姓名：</th>
+          <td id="name"></td>
+        </tr>
+        <tr>
+          <th>邮箱：</th>
+          <td id="email"></td>
+        </tr>
+        <tr>
+          <th>电话：</th>
+          <td id="phone"></td>
+        </tr>
+        <tr>
+          <th>地址：</th>
+          <td id="address"></td>
+        </tr>
+        <tr>
+          <th>玩具租金：</th>
+          <td id="cash"></td>
+        </tr>
+        <tr>
+          <th>会员点数：</th>
+          <td id="points"></td>
+        </tr>
+        <td><a href="user_modify.html" class="button">修改个人信息</a></td>
+      </table>
+    </div>
+    
+    <div class="info-section">
+      <h2>玩具租赁信息</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>玩具名称</th>
+            <th>租赁数量</th>
+            <th>租赁时间</th>
+            <th>需付金额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>小熊玩具</td>
+            <td>2</td>
+            <td>2023-11-03</td>
+            <td>45元</td>
+          </tr>
+          <!-- <tr>
+            <td>飞机模型</td>
+            <td>1</td>
+            <td>2023-11-06</td>
+            <td>79.99元</td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="info-section">
+      <h2>玩具归还信息</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>玩具名称</th>
+            <th>租赁时间</th>
+            <th>归还时间</th>
+            <th>逾期罚金</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>小熊玩具</td>
+            <td>2023-11-03</td>
+            <td>2023-11-23</td>
+            <td>0元</td>
+          </tr>
+          <tr>
+            <td>飞机模型</td>
+            <td>2023-11-06</td>
+            <td>2023-12-08</td>
+            <td>4元</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  //初始化用户的信息
+  function inituser() {
+    // $("#name").val(toy.name);
+  }
+  inituser();
+</script>
+</html>

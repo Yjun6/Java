@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="css/conmmon.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<style>
+    header {
+          background-color: #333;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+    }
+    footer {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 20px 0;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+</style>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <h1>玩具租赁系统</h1>
+    </header>
+    <nav>
+        <a href="user_reg.html">用户注册</a> 
+        <a href="manager_reg.html">管理员注册</a> 
+      </nav>
+    <!-- 版心 -->
+    <div class="login-container">
+        <!-- 中间的登录框 -->
+        <div class="login-dialog">
+            <h3>登录</h3>
+            <div class="row" id="row2">
+                <span>用户名</span>
+                <input type="text" id="username">
+            </div>
+            <div class="row" id="row2">
+                <span>密码</span>
+                <input type="password" id="password">
+            </div>
+            <div class="row">
+                <span>身份:</span>
+                <select id="identity">
+                    <option value="user">会员</option>
+                    <option value="manager">管理员</option>
+                </select>
+            </div>
+            <div class="row" id="row2">
+                <button id="submit" onclick="doLogin()">提交</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        //登录操作
+        function doLogin() {
+            //1.校验参数
+            var username = jQuery("#username");
+            var password = jQuery("#password");
+            var identity = jQuery("#identity");
+            if (username.val().trim()=="") {
+                alert("请先输入用户名");
+                username.focus(); //光标的移动
+                return false;
+            } else if (password.val().trim()=="") {
+                alert("请先输入密码");
+                password.focus();
+                return false;
+            }
+            if (identity.val()=="user") {
+                //2.将数据给后端
+                jQuery.ajax({
+                    url: "/user/login",
+                    type: "get",
+                    data: {
+                        "username": username.val().trim(),
+                        "password":password.val().trim()
+                    },
+                    success: function(ret) {
+                        //3.结果展示给用户
+                        if (ret.code==200 && ret.data==1) {
+                            //登录成功
+                            location.href="user.html";
+                        } else {
+                            //登录失败
+                            alert("抱歉：登录失败! "+ret.msg);
+                        }
+                    }
+                });
+            } else {
+                //2.将数据给后端
+                jQuery.ajax({
+                    url: "/manager/login",
+                    type: "get",
+                    data: {
+                        "username": username.val().trim(),
+                        "password":password.val().trim()
+                    },
+                    success: function(ret) {
+                        //3.结果展示给用户
+                        if (ret.code==200 && ret.data==1) {
+                            //登录成功
+                            location.href="admin.html";
+                        } else {
+                            //登录失败
+                            alert("抱歉：登录失败! "+ret.msg);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
