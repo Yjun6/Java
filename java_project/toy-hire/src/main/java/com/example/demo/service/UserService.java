@@ -31,5 +31,11 @@ public class UserService {
     public List<Userinfo> getUserAll() {
         return userMapper.getUserAll();
     }
+    public int getUserById (Integer id) {
+        return userMapper.getUserById(id);
+    }
 
+    public int updateUserById(Userinfo userinfo) {
+        return userMapper.updateUserById(userinfo);
+    }
 }

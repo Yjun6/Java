@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery.min.js"></script>
+    <script src="js/urlutils.js"></script>
   <title>个人信息</title>
   <style>
     body {
@@ -106,8 +107,8 @@
   </nav>
   <h2>相关信息</h2>
   <div class="container">
-    <div class="info-section">
-      <h2>个人信息</h2>
+    <div class="info-section" id="userinit">
+      <!-- <h2>个人信息</h2>
       <table>
         <tr>
           <th>姓名：</th>
@@ -134,7 +135,7 @@
           <td id="points"></td>
         </tr>
         <td><a href="user_modify.html" class="button">修改个人信息</a></td>
-      </table>
+      </table> -->
     </div>
     
     <div class="info-section">
@@ -197,8 +198,36 @@
 <script>
   //初始化用户的信息
   function inituser() {
-    // $("#name").val(toy.name);
-  }
+    console.log("111");
+    jQuery.ajax({
+      url: "/user/init",
+      type: "get", //业内规范：查询是get,非查询是post
+      data: {
+      },
+      success: function(res) {
+        console.log("222");
+        if (res.code==200 && res.data!=null) {
+          console.log("333");
+          //有数据  展示
+          var user = res.data;
+          var createHtml = "<h2>个人信息</h2>";
+          createHtml += "<table><tr><th>姓名：</th><td id='name'>"+user.username+"</td>";
+          createHtml += '</tr><tr><th>邮箱：</th><td id="email">'+user.email+'</td></tr>';
+          createHtml += "<tr><th>电话：</th><td id='phone'>"+user.phone+"</td></tr>";
+          createHtml += '<tr><th>地址：</th><td id="address">'+user.address+'</td></tr>';
+          createHtml += '<tr><th>玩具租金：</th><td id="cash">'+user.cash+'</td></tr>';
+          createHtml += '<tr><th>会员点数：</th><td id="points">'+user.points+'</td></tr>';
+          createHtml += "<td><a href='user_modify.html?id="+user.id+"' class='detail'>修改个人信息</a></td></table>";
+          jQuery("#userinit").html(createHtml);
+        } else {
+          console.log("444");
+          alert("抱歉：查询失败！"+res.msg);
+          location.href = "login.html";
+        }
+        console.log("555");
+      }
+    });
+	} 
   inituser();
 </script>
 </html>

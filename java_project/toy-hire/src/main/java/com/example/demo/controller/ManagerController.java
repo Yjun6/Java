@@ -107,4 +107,16 @@ public class ManagerController {
         List<Userinfo> list = userService.getUserAll();
         return ResultAjax.succ(list);
     }
+
+    /**
+     * 注销
+     * */
+    @RequestMapping("/logout")
+    public ResultAjax logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session!=null && session.getAttribute(AppVariable.SESSION_USERINFO_KEY)!=null) {
+            session.removeAttribute(AppVariable.SESSION_USERINFO_KEY);
+        }
+        return ResultAjax.succ(1);
+    }
 }

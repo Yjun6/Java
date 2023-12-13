@@ -1,9 +1,11 @@
 package com.example.demo.dao;
 
+import com.example.demo.model.Toyinfo;
 import com.example.demo.model.Userinfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -17,4 +19,10 @@ public interface UserMapper {
 
     @Select("select * from user ")
     List<Userinfo> getUserAll();
+
+    @Select("select id from user where id=#{id}")
+    int getUserById(@Param("id") Integer id);
+
+    @Update("update user set username=#{username},email=#{email},phone=#{phone},address=#{address} where id=#{id}")
+    int updateUserById(Userinfo userinfo);
 }

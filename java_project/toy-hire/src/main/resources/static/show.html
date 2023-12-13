@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery.min.js"></script>
+    <script src="js/logout.js"></script>
     <title>玩具管理</title>
     <style>
         body {
@@ -38,7 +39,8 @@
     </header>
     <nav>
         <a href="add.html">添加玩具</a> | 
-        <a href="admin.html">返回--管理员界面</a>
+        <a href="admin.html">返回--管理员界面</a> | 
+        <a onclick="logout()">退出登录</a> 
     </nav>
     <section id="view_toys">
         <!-- <h2>所有玩具信息</h2>

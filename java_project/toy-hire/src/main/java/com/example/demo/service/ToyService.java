@@ -36,4 +36,8 @@ public class ToyService {
     public Integer updateToyById(Toyinfo toyinfo) {
         return toyMapper.updateToyById(toyinfo);
     }
+
+    public List<Toyinfo> getToyListByInventory() {
+        return toyMapper.getToyListByInventory();
+    }
 }

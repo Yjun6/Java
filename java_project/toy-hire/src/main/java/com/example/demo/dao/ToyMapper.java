@@ -24,4 +24,7 @@ public interface ToyMapper {
 
     @Update("update toy set name=#{name},situation=#{situation},price=#{price},inventory=#{inventory} where id=#{id}")
     int updateToyById(Toyinfo toyinfo);
+
+    @Select("select id,name,situation,price,inventory from toy where inventory>0 order by inventory desc,price desc,id asc")
+    List<Toyinfo> getToyListByInventory();
 }
