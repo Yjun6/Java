@@ -27,4 +27,10 @@ public interface ToyMapper {
 
     @Select("select id,name,situation,price,inventory from toy where inventory>0 order by inventory desc,price desc,id asc")
     List<Toyinfo> getToyListByInventory();
+
+    @Select("select * from toy where id=#{id}")
+    Toyinfo selectToyByIdAll(@Param("id") Integer id);
+
+    @Select("select * from toy where name=#{name}")
+    Toyinfo selectToyByName(@Param("name") String name);
 }

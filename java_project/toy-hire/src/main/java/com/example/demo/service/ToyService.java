@@ -40,4 +40,12 @@ public class ToyService {
     public List<Toyinfo> getToyListByInventory() {
         return toyMapper.getToyListByInventory();
     }
+
+    public Toyinfo selectToyByIdAll(Integer id) {
+        return toyMapper.selectToyByIdAll(id);
+    }
+
+    public Toyinfo selectToyByName(String name) {
+        return toyMapper.selectToyByName(name);
+    }
 }
