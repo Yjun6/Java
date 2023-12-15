@@ -138,15 +138,15 @@
       </table> -->
     </div>
     
-    <div class="info-section">
-      <h2>玩具租赁信息</h2>
+    <div class="info-section" id="initHireUser">
+      <!-- <h2>玩具租赁信息</h2>
       <table>
         <thead>
           <tr>
             <th>玩具名称</th>
             <th>租赁数量</th>
             <th>租赁时间</th>
-            <th>需付金额</th>
+            <th>距离逾期时间</th>
           </tr>
         </thead>
         <tbody>
@@ -156,14 +156,8 @@
             <td>2023-11-03</td>
             <td>45元</td>
           </tr>
-          <!-- <tr>
-            <td>飞机模型</td>
-            <td>1</td>
-            <td>2023-11-06</td>
-            <td>79.99元</td>
-          </tr> -->
         </tbody>
-      </table>
+      </table> -->
     </div>
     
     <div class="info-section">
@@ -196,6 +190,7 @@
   </div>
 </body>
 <script>
+  
   //初始化用户的信息
   function inituser() {
     console.log("111");
@@ -219,15 +214,66 @@
           createHtml += '<tr><th>会员点数：</th><td id="points">'+user.points+'</td></tr>';
           createHtml += "<td><a href='user_modify.html?id="+user.id+"' class='detail'>修改个人信息</a></td></table>";
           jQuery("#userinit").html(createHtml);
-        } else {
+        } else if (res.data==-2){
           console.log("444");
           alert("抱歉：查询失败！"+res.msg);
           location.href = "login.html";
+        } else {
+          alert("抱歉：查询失败！"+res.msg);
         }
         console.log("555");
       }
     });
 	} 
   inituser();
+
+  //玩具租聘信息
+  function initHireUser(){
+    console.log("111");
+    jQuery.ajax({
+      url: "/user/hireinit",
+      type: "get", //业内规范：查询是get,非查询是post
+      data: {
+      },
+      success: function(res) {
+        console.log("222");
+        if (res.code==200 && res.data!=null) {
+          console.log("333");
+
+          var createHtml = "";
+          if (res.data!=null && res.data.length>0){
+              console.log("333");
+              //有玩具
+              createHtml = "<h2>玩具租赁信息</h2><table><thead><tr><th>玩具名称</th>";
+              createHtml += "<th>租赁数量</th><th>租赁时间</th><th>距离逾期时间</th></tr></thead><tbody>";
+              var toy = res.data;
+              for(var i=0; i<toy.length; i++) {
+                  //循环加入玩具对象
+                  var hiretoy = toy[i]; // 对象
+                  createHtml += '<tr><td>'+hiretoy.toyname+'</td>';
+                  createHtml += '<td>'+hiretoy.number+'</td>';
+                  createHtml += '<td>'+hiretoy.date+'</td>';
+                  createHtml += '<td>'+hiretoy.latedate+'</td></tr>';
+              }
+              createHtml += "</tbody></table>";
+              } else {
+              console.log("444");
+              //暂无玩具信息
+              createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无租借信息!</h3>';
+          }
+          jQuery("#initHireUser").html(createHtml);
+
+        } else if (res.data==-2){
+          console.log("444");
+          alert("抱歉：查询失败！"+res.msg);
+          location.href = "login.html";
+        } else {
+          alert("抱歉：查询失败！"+res.msg);
+        }
+        console.log("555");
+      }
+    });
+  }
+  initHireUser();
 </script>
 </html>

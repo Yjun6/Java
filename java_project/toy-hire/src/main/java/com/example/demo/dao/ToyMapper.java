@@ -33,4 +33,7 @@ public interface ToyMapper {
 
     @Select("select * from toy where name=#{name}")
     Toyinfo selectToyByName(@Param("name") String name);
+
+    @Update("update toy set inventory=#{inventory} where id=#{id}")
+    int updateToyInventory(@Param("id") Integer id,@Param("inventory") Integer inventory);
 }

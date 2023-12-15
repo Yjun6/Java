@@ -38,4 +38,12 @@ public class UserService {
     public int updateUserById(Userinfo userinfo) {
         return userMapper.updateUserById(userinfo);
     }
+
+    public int updateUserByIdCash(Integer id,Integer cash) {
+        return userMapper.updateUserByIdCash(id,cash);
+    }
+
+    public int updateUserByIdPoints(Integer id, Integer points) {
+        return userMapper.updateUserByIdPoints(id,points);
+    }
 }

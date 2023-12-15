@@ -26,7 +26,7 @@
         section {
             padding: 20px;
         }
-        .rental-info {
+        .hire-toy{
             border: 1px solid #ccc;
             margin: 10px;
             padding: 20px;
@@ -41,15 +41,63 @@
         <a href="admin.html">返回--管理员界面</a>
     </nav>
     <section id="rental-info">
-        <h2>租赁信息</h2>
-        <div class="rental-info">
+        <!-- <h2>租赁信息</h2>
+        <div class="hire-toy">
             <h3>玩具名称：小熊玩偶</h3>
             <p>租赁人：张三</p>
+            <p>租借数量：3</p>
             <p>租赁日期：2023-11-03</p>
-        </div>
+        </div> -->
     </section>
 </body>
 <script>
-    
+    function init() {
+        jQuery.ajax({
+            url: "/manager/hireuser",
+            type: "get", //业内规范：查询是get,非查询是post
+            data: {
+            },
+            success: function(res) {
+                console.log("111");
+                //3.将后端返回数据展示给用户
+                if (res.code==200 && res.data!=null) {
+                    console.log(res);
+                    //展示列表
+                    var createHtml = "";
+                    if (res.data!=null && res.data.length>0){
+                        console.log("333");
+                        //有玩具
+                        createHtml += "<h2>租赁信息</h2>";
+        //                 <!-- <h2>租赁信息</h2>
+        // <div class="hire-toy">
+        //     <h3>玩具名称：小熊玩偶</h3>
+        //     <p>租赁人：张三</p>
+        //     <p>租借数量：3</p>
+        //     <p>租赁日期：2023-11-03</p>
+        // </div> -->  toyname username number date
+                        var toy = res.data;
+                        for(var i=0; i<toy.length; i++) {
+                            //循环加入玩具对象
+                            var hiretoy = toy[i]; // 对象
+                            createHtml += '<div class="hire-toy">';
+                            createHtml += '<h3>玩具名称：'+hiretoy.toyname+'</h3>';
+                            createHtml += '<p>租赁人：'+hiretoy.username+'</p>';
+                            createHtml += '<p>租借数量：'+hiretoy.number+'</p>';
+                            createHtml += '<p>租赁日期：'+hiretoy.date+'</p></div>';
+                        }
+                        } else {
+                        console.log("444");
+                        //暂无玩具信息
+                        createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无租借信息!</h3>';
+                    }
+                    jQuery("#rental-info").html(createHtml);
+                } else {
+                    alert("抱歉：查询失败！"+res.msg);
+                    location.href = "login.html";
+                } 
+            }
+        });
+    }
+    init();
 </script>
 </html>

@@ -5,13 +5,9 @@ import com.example.demo.common.PasswordUtils;
 import com.example.demo.common.ResultAjax;
 import com.example.demo.common.SessionUtils;
 import com.example.demo.dao.UserMapper;
-import com.example.demo.model.Captchainfo;
-import com.example.demo.model.Managerinfo;
-import com.example.demo.model.Toyinfo;
-import com.example.demo.model.Userinfo;
-import com.example.demo.service.CaptchaService;
-import com.example.demo.service.ManagerService;
-import com.example.demo.service.UserService;
+import com.example.demo.model.*;
+import com.example.demo.model.vo.HireUserVO;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,6 +29,12 @@ public class ManagerController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HireUserService hireUserService;
+
+    @Autowired
+    private AllService allService;
 
     /**
      * 注册功能
@@ -118,5 +121,19 @@ public class ManagerController {
             session.removeAttribute(AppVariable.SESSION_USERINFO_KEY);
         }
         return ResultAjax.succ(1);
+    }
+
+    @RequestMapping("/hireuser")
+    public ResultAjax getHireUser(HttpServletRequest request) {
+        //1.获取登录信息
+        Managerinfo managerinfo = SessionUtils.getManager(request);
+        if (managerinfo==null) {
+            return ResultAjax.fail(-2,"请先登录！");
+        }
+        //2.组装HireUserVO
+        //查询toyname username number date
+        List<HireUserVO> hireUserVOList = allService.getHireUserVO();
+        //4.返回数据
+        return ResultAjax.succ(hireUserVOList);
     }
 }

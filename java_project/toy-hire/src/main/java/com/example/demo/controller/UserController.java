@@ -4,9 +4,13 @@ import com.example.demo.common.AppVariable;
 import com.example.demo.common.PasswordUtils;
 import com.example.demo.common.ResultAjax;
 import com.example.demo.common.SessionUtils;
+import com.example.demo.model.HireUserinfo;
 import com.example.demo.model.Managerinfo;
 import com.example.demo.model.Toyinfo;
 import com.example.demo.model.Userinfo;
+import com.example.demo.model.vo.HireUserVO;
+import com.example.demo.service.AllService;
+import com.example.demo.service.HireUserService;
 import com.example.demo.service.ToyService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,6 +33,12 @@ public class UserController {
 
     @Autowired
     private ToyService toyService;
+
+    @Autowired
+    private HireUserService hireUserService;
+
+    @Autowired
+    private AllService allService;
 
     /**
      * 注册功能
@@ -158,4 +171,30 @@ public class UserController {
         List<Toyinfo> list = toyService.getToyListByInventory();
         return ResultAjax.succ(list);
     }
+
+    @RequestMapping("/hireinit")
+    public ResultAjax hireInit(HttpServletRequest request) {
+//        createHtml += '<tr><td>'+hiretoy.toyname+'</td>';
+//        createHtml += '<td>'+hiretoy.number+'</td>';
+//        createHtml += '<td>'+hiretoy.date+'</td>';
+//        createHtml += '<td>'+hiretoy.latedate+'</td></tr>';
+        //1.验证是否登录
+        Userinfo userinfo = SessionUtils.getUser(request);
+        if (userinfo==null) {
+            return ResultAjax.fail(-2,"请先登录");
+        }
+        //2.获取hireuser state=1信息
+        List<HireUserVO> list = allService.getHireUserVOById(userinfo.getId(),1);
+        //设置 latedate 属性
+        //        LocalDateTime now = LocalDateTime.now();
+        //// 假设overdueDateTime是从数据库获取到的逾期时间
+        //        LocalDateTime overdueDateTime =  "2023-12-15T13:10:09.220"; // 从数据库获取逾期时间的具体实现取决于你使用的数据库框架
+        //// 计算逾期时间与当前时间之间的差值
+        //        Duration duration = Duration.between(now, overdueDateTime);
+        //// 获取小时数
+        //        long hoursDifference = duration.toHours();
+
+        return ResultAjax.succ(1);
+    }
+
 }

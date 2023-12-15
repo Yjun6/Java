@@ -3,6 +3,10 @@ package com.example.demo.dao;
 
 import com.example.demo.model.HireUserinfo;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 public interface HireUserMapper {
 //    private Integer userid;
@@ -13,4 +17,7 @@ public interface HireUserMapper {
     @Insert("insert into hireuser(userid,toyid,createtime,state) " +
             "values(#{userid},#{toyid},#{createtime},#{state})")
     public int insertHireUser(HireUserinfo hireUser);
+
+   @Select("select * from hireuser where state=1")
+    List<HireUserinfo> getHireUserAll();
 }

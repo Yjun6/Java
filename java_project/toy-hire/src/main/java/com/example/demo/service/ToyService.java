@@ -48,4 +48,8 @@ public class ToyService {
     public Toyinfo selectToyByName(String name) {
         return toyMapper.selectToyByName(name);
     }
+
+    public Integer updateToyInventory(Integer id,Integer inventory) {
+        return toyMapper.updateToyInventory(id,inventory);
+    }
 }
