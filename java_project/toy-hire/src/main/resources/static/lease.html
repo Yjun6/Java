@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/jquery.min.js"></script>
+  <title>玩具租赁管理</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: #fff;
+      margin: 0;
+    }
+    
+    h2 {
+			text-align: center;
+			margin-top: 50px;
+			color: #333;
+	}
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    #type {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #555;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+        <h1>玩具租赁系统</h1>
+  </header>
+  <nav>
+    <a href="user.html">返回--用户界面</a>
+  </nav>
+  <h2>玩具租赁管理</h2>
+  <div class="container">
+    <div id="toyForm">
+      <div class="form-group">
+        <label for="toyName">玩具名称：</label>
+        <input type="text" id="toyName" >
+      </div>
+      <div class="form-group">
+        <label for="rentalQuantity">租赁数量：</label>
+        <input type="number" id="rentalQuantity" min="1" >
+      </div>
+      <!-- <div class="form-group">
+        <label for="rentalDate">租赁时间：</label>
+        <input type="date" id="rentalDate">
+      </div> -->
+      <div class="form-group">
+        <label for="amount">支付方式：</label>
+        <select id="type">
+          <option value="cash">现金</option>
+          <option value="points">会员点数</option>
+        </select>
+      </div>
+      <button onclick="sub()">租赁玩具</button>
+    </div>
+<!--     
+    <table id="toyTable">
+      <thead>
+        <tr>
+          <th>玩具名称</th>
+          <th>租赁数量</th>
+          <th>租赁时间</th>
+          <th>租金金额</th>
+        </tr>
+      </thead>
+      <tbody> -->
+        <!-- 这里将动态添加租赁玩具的信息 -->
+      <!-- </tbody>
+    </table> -->
+  </div>
+
+  <script>
+   //
+		function sub() {
+      console.log("111");
+			//获取数据
+			var name = jQuery("#toyName");   
+      var rentalQuantity = jQuery("#rentalQuantity");
+      var type = jQuery("#type");
+			if (name.val().trim()=="") {
+        alert("请先输入玩具名字");
+        name.focus();
+        return false;
+      }
+			if (rentalQuantity.val().trim()=="") {
+          alert("请先输入租借数量");
+          return false;
+      }
+			if (type.val().trim()=="") {
+          alert("请先选择支付类型");
+          type.focus();
+          return false;
+      }
+			jQuery.ajax({
+        url: "/toy/hire",
+        type: "post", //业内规范：查询是get,非查询是post
+        data: {
+					"toyname":name.val().trim(),
+					"number":rentalQuantity.val().trim(),
+					"type":type.val().trim()
+        },
+        success: function(res) {
+          console.log("222");
+            //3.将后端返回数据展示给用户
+            if (res.code==200 && res.data==1) {
+              console.log("333");
+						//成功
+						  alert("租借成功");
+              location.href = "user.html";
+            } else if(res.data==-2){
+              console.log("444");
+              alert("抱歉：租借失败！"+res.msg);
+              location.href = "login.html";
+					} else {
+            console.log("555");
+              alert("抱歉：租借失败！"+res.msg);
+          }
+        }
+      });
+		}
+  </script>
+</body>
+</html>

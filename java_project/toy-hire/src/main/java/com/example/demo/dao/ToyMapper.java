@@ -36,4 +36,7 @@ public interface ToyMapper {
 
     @Update("update toy set inventory=#{inventory} where id=#{id}")
     int updateToyInventory(@Param("id") Integer id,@Param("inventory") Integer inventory);
+
+    @Update("update toy set inventory=#{inventory} where id=#{id}")
+    int addToyById(Toyinfo toyinfo);
 }

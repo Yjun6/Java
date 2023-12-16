@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery.min.js"></script>
     <script src="js/urlutils.js"></script>
-  <title>个人信息</title>
+  <title>已归还玩具信息</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -106,8 +106,8 @@
     <a href="user.html">返回--用户界面</a>
   </nav>
   <!-- <h2>相关信息</h2> -->
-  <div class="container">
-    <div class="info-section" id="userinit">
+  <!-- <div class="container">
+    <div class="info-section" id="userinit"> -->
       <!-- <h2>个人信息</h2>
       <table>
         <tr>
@@ -136,9 +136,9 @@
         </tr>
         <td><a href="user_modify.html" class="button">修改个人信息</a></td>
       </table> -->
-    </div>
+    <!-- </div> -->
     <div class="info-section">
-      <h2>玩具归还信息</h2>
+      <!-- <h2>玩具归还信息</h2>
       <table>
         <thead>
           <tr>
@@ -162,17 +162,17 @@
             <td>4元</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </div>
   </div>
 </body>
 <script>
-  
-  //初始化用户的信息
-  function inituser() {
+
+  //玩具租聘信息
+  function initHireUser(){
     console.log("111");
     jQuery.ajax({
-      url: "/user/init",
+      url: "/user/returninit",
       type: "get", //业内规范：查询是get,非查询是post
       data: {
       },
@@ -180,17 +180,38 @@
         console.log("222");
         if (res.code==200 && res.data!=null) {
           console.log("333");
-          //有数据  展示
-          var user = res.data;
-          var createHtml = "<h2>个人信息</h2>";
-          createHtml += "<table><tr><th>姓名：</th><td id='name'>"+user.username+"</td>";
-          createHtml += '</tr><tr><th>邮箱：</th><td id="email">'+user.email+'</td></tr>';
-          createHtml += "<tr><th>电话：</th><td id='phone'>"+user.phone+"</td></tr>";
-          createHtml += '<tr><th>地址：</th><td id="address">'+user.address+'</td></tr>';
-          createHtml += '<tr><th>玩具租金：</th><td id="cash">'+user.cash+'</td></tr>';
-          createHtml += '<tr><th>会员点数：</th><td id="points">'+user.points+'</td></tr>';
-          createHtml += "<td><a href='user_modify.html?id="+user.id+"' class='detail'>修改个人信息</a></td></table>";
-          jQuery("#userinit").html(createHtml);
+
+          var createHtml = "";
+          if (res.data!=null && res.data.length>0){
+              console.log("333");
+              //有玩具
+        //       <table><thead><tr><th>玩具名称</th><th>租赁时间</th>
+        //     <th>归还时间</th><th>逾期罚金</th></tr></thead>
+        // <tbody>
+        //   <tr><td>小熊玩具</td>
+        //     <td>2023-11-03</td>
+        //     <td>2023-11-23</td>
+        //     <td>0元</td></tr>
+        // </tbody></table>
+              createHtml = "<h2>玩具租赁信息</h2><table><thead><tr><th>玩具名称</th>";
+              createHtml += "<th>租赁数量</th><th>租赁时间</th><th>距离逾期时间</th></tr></thead><tbody>";
+              var toy = res.data;
+              for(var i=0; i<toy.length; i++) {
+                  //循环加入玩具对象
+                  var hiretoy = toy[i]; // 对象
+                  createHtml += '<tr><td>'+hiretoy.toyname+'</td>';
+                  createHtml += '<td>'+hiretoy.number+'</td>';
+                  createHtml += '<td>'+hiretoy.date+'</td>';
+                  createHtml += '<td>'+hiretoy.latedate+'天</td></tr>';
+              }
+              createHtml += "</tbody></table>";
+              } else {
+              console.log("444");
+              //暂无玩具信息
+              createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无租借信息!</h3>';
+          }
+          jQuery("#initHireUser").html(createHtml);
+
         } else if (res.data==-2){
           console.log("444");
           alert("抱歉：查询失败！"+res.msg);
@@ -201,8 +222,7 @@
         console.log("555");
       }
     });
-	} 
-  inituser();
-
+  }
+  initHireUser();
 </script>
 </html>

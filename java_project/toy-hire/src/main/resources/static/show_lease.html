@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/urlutils.js"></script>
+  <title>玩具租赁管理系统 - 查看所有玩具信息</title>
+  <style>
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        }
+	h2 {
+		text-align: center;
+		margin-top: 50px;
+		color: #333;
+	}
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #dbd9d9f0;
+      color: rgb(19, 18, 18);
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>玩具租赁系统</h1>
+    </header>
+	<nav>
+		<a href="user.html">用户页面</a> |
+    <a href="lease.html">租赁管理页面</a> 
+	</nav>
+	<h2>可租赁的玩具信息</h2>
+  <table id="toy">
+    <!-- <tr>
+      <th>玩具编号</th>
+      <th>玩具名称</th>
+      <th>玩具类型</th>
+      <th>玩具数量</th>
+      <th>玩具价格</th>
+    </tr> -->
+    <!-- <tr>
+      <td>001</td>
+      <td>小熊玩具</td>
+      <td>玩偶类</td>
+      <td>50</td>
+      <td>19.99</td>
+    </tr> -->
+  </table>
+</body>
+<script>
+  //初始化界面
+function init() {
+  jQuery.ajax({
+      url: "/user/toyinit",
+      type: "get", //业内规范：查询是get,非查询是post
+      data: {
+      },
+      success: function(res) {
+          console.log("111");
+          //3.将后端返回数据展示给用户
+          if (res.code==200 && res.data!=null) {
+              console.log(res);
+              //展示列表
+              var createHtml = "";
+              if (res.data!=null && res.data.length>0){
+                  console.log("333");
+                  //有玩具
+                  createHtml += "<tr><th>玩具编号</th><th>玩具名称</th><th>玩具类型</th><th>玩具数量</th><th>玩具价格</th></tr>";
+                  var toy = res.data;
+                  for(var i=0; i<toy.length; i++) {
+                      //循环加入玩具对象
+                      var art = toy[i]; // 对象
+                      createHtml += '<tr>';
+                      createHtml += '<td>'+art.id+'</td>';
+                      createHtml += '<td>'+art.name+'</td>';
+                      createHtml += '<td>'+art.situation+'</td>';
+                      createHtml += '<td>'+art.inventory+'</td>';
+                      createHtml += '<td>'+art.price+'</td></tr>';
+                  }
+                  } else {
+                  console.log("444");
+                  //暂无玩具信息
+                  createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无玩具!</h3>';
+              }
+              jQuery("#toy").html(createHtml);
+          } else {
+              alert("抱歉：查询失败！"+res.msg);
+          } 
+      }
+  });
+}
+init();
+</script>
+</html>

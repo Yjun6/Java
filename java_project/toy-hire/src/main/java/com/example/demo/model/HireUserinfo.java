@@ -11,5 +11,5 @@ public class HireUserinfo implements Serializable {
     private Integer toyid;
     private LocalDateTime createtime;
     private LocalDateTime updatetime;
-    private int state; // 1 租借  2  归还  0 无数据
+    private int state; // 1 租借  0 归还
 }

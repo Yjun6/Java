@@ -208,6 +208,7 @@ public class ToyController {
                 }
             }
 
+
             update = updateToyInventory.get();
             cost = updateUserCost.get();
             if (insert != 1 || update != 1 || cost != 1) {

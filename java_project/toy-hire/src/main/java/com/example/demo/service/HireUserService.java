@@ -19,4 +19,8 @@ public class HireUserService {
     public List<HireUserinfo> getHireUserAll(){
         return hireUserMapper.getHireUserAll();
     }
+
+    public int updateState(HireUserinfo hireUserinfo){
+        return hireUserMapper.updateState(hireUserinfo);
+    }
 }

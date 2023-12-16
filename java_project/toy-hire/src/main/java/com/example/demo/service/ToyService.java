@@ -52,4 +52,8 @@ public class ToyService {
     public Integer updateToyInventory(Integer id,Integer inventory) {
         return toyMapper.updateToyInventory(id,inventory);
     }
+
+    public int addToyById(Toyinfo toyinfo){
+        return toyMapper.addToyById(toyinfo);
+    }
 }
