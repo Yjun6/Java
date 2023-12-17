@@ -12,20 +12,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MyConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginIntercept())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/editor.md/**")
-//                .excludePathPatterns("/img/*")
-//                .excludePathPatterns("/js/*")
-//                .excludePathPatterns("/css/*")
-//                .excludePathPatterns("/login.html")
-//                .excludePathPatterns("/user/login")
-//                .excludePathPatterns("/reg.html")
-//                .excludePathPatterns("/user/reg")
-//                .excludePathPatterns("/blog_list.html")
-//                .excludePathPatterns("/art/getlistbypage")
-//                .excludePathPatterns("/art/increment_rcount")
-//                .excludePathPatterns("/blog_content.html")
-//                .excludePathPatterns("/art/detail");
+        registry.addInterceptor(new LoginIntercept())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/img/*")
+                .excludePathPatterns("/js/*")
+                .excludePathPatterns("/css/*")
+                .excludePathPatterns("/login.html")
+                .excludePathPatterns("/user/login")
+                .excludePathPatterns("/manager/login")
+                .excludePathPatterns("/user_reg.html")
+                .excludePathPatterns("/manager_reg.html")
+                .excludePathPatterns("/manager/reg")
+                .excludePathPatterns("/user/reg");
     }
 }
