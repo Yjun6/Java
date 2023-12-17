@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/logout.js"></script>
   <title>玩具租赁系统 - 管理员界面</title>
   <style>
     body {
@@ -18,9 +20,16 @@
       padding: 20px 0;
       text-align: center;
     }
-
     nav {
-      background-color: #555;
+      position: fixed;
+      left: 10px; /* 距离左侧距离 */
+      bottom: 10px; /* 距离底部距离 */
+    }
+    nav a {
+      text-decoration: none;
+    }
+    nav {
+      /* background-color: #555; */
       padding: 10px 0;
       text-align: center;
     }
@@ -28,11 +37,10 @@
     nav a {
       display: inline-block;
       padding: 10px 20px;
-      color: #fff;
+      color: #000;
       text-decoration: none;
       margin: 0 10px;
     }
-
     h2 {
       text-align: center;
       margin: 50px 0;
@@ -72,7 +80,7 @@
       text-align: center;
     }
 
-    footer {
+    /* footer {
 			background-color: #333;
 			color: #fff;
 			text-align: center;
@@ -80,7 +88,7 @@
 			position: absolute;
 			bottom: 0;
 			width: 100%;
-		}
+		} */
   </style>
 </head>
 <body>
@@ -92,21 +100,24 @@
     <a href="l_r_information.html">玩具租借信息</a>
   </nav> -->
   <h2>管理员界面</h2>
+  <nav>
+    <a onclick="logout()">退出登录</a> 
+  </nav>
   <div class="container">
     <div class="menu">
-      <h2>玩具管理</h2>
+      <!-- <h2>玩具管理</h2> -->
       <a href="add.html">添加玩具</a>
       <a href="show.html">查看玩具信息</a>
       <a href="lease_information.html">玩具租赁信息</a>
       <a href="return_information.html">玩具归还信息</a>
-    </div>
-    <div class="content">
-      <h2>用户管理</h2>
+    <!-- </div> -->
+    <!-- <div class="content"> -->
+      <!-- <h2>用户管理</h2> -->
       <a href="user_information.html">查看用户信息</a>
     </div>
   </div>
-  <footer>
+  <!-- <footer>
     版权所有 © 2023 玩具租聘系统 计科2103班第一小组
-  </footer>
+  </footer> -->
 </body>
 </html>

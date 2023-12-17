@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * 系统配置文件
  */
-//@Configuration
-//public class MyConfig implements WebMvcConfigurer {
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
+@Configuration
+public class MyConfig implements WebMvcConfigurer {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(new LoginIntercept())
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/editor.md/**")
@@ -27,5 +27,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //                .excludePathPatterns("/art/increment_rcount")
 //                .excludePathPatterns("/blog_content.html")
 //                .excludePathPatterns("/art/detail");
-//    }
-//}
+    }
+}

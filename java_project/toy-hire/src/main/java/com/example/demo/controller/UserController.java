@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -113,7 +115,8 @@ public class UserController {
             return ResultAjax.fail(-2,"请先登录！");
         }
         //查询用户个人信息 并返回
-        return ResultAjax.succ(userinfo);
+        Userinfo userinfo1 = userService.getUserByName(userinfo.getUsername());
+        return ResultAjax.succ(userinfo1);
     }
 
     @RequestMapping("/detail")
@@ -209,80 +212,97 @@ public class UserController {
         return ResultAjax.succ(list);
     }
 
-        @Transactional
+    /**
+     * 用户归还玩具
+     * ************未完成的功能：
+     * ******--如果是没有逾期 点数就增加原有玩具价格的
+     * *****-- 逾期了，就扣除原价格的1/10 一天算
+     * */
+    @Transactional
     @PostMapping("/hirereturn")
-    public ResultAjax hirereTurn(String toyid,String date,String returntoy,HttpServletRequest request) {
-            System.out.println("11111");
-        return null;
+    public ResultAjax hirereTurn(String toyid,String date,String number,HttpServletRequest request) {
+        System.out.println("111");
+        System.out.println(toyid);
+        System.out.println(date);
+        System.out.println(number);
+        //1.验证登录
+        Userinfo userinfo = SessionUtils.getUser(request);
+        if (userinfo==null) {
+            return ResultAjax.fail(-2,"请先登录");
         }
-
-//    @Transactional
-//    @PostMapping("/hirereturn")
-//    public ResultAjax hirereTurn(Integer toyid,LocalDateTime date,Integer returntoy,HttpServletRequest request) {
-//        System.out.println("111");
-////        "toyid": toyid,
-////                "date": date,
-////                "returntoy": returntoy
-//        System.out.println(toyid);
-//        System.out.println(date);
-//        System.out.println(returntoy);
-//        //1.验证登录
-//        Userinfo userinfo = SessionUtils.getUser(request);
-//        if (userinfo==null) {
-//            return ResultAjax.fail(-2,"请先登录");
-//        }
-//        //2.验证是否可以归还
-//        if (toyid==null || date==null || returntoy==null) {
-//            return ResultAjax.fail(-1,"参数有误");
-//        }
-//        int ret = allService.getHireUser(userinfo.getId(),toyid,date);
-//        if (ret < returntoy) {
-//            return ResultAjax.fail(-1,"参数有误");
-//        }
-//        //3.归还
-//        int r = 1;
-//        try{
-//            //玩具增加
-//            Toyinfo toyinfo = new Toyinfo();
-//            toyinfo.setInventory(toyinfo.getInventory()+returntoy);
-//            toyinfo.setId(toyid);
-//            FutureTask<Integer> addToyById = new FutureTask(()->{
-//                return toyService.addToyById(toyinfo);
-//            });
-//            taskExecutor.submit(addToyById);
-//            ret = addToyById.get();
-//            if (ret != 1) {
-//                return ResultAjax.fail(-1,"归还失败");
-//            }
-//            //hireuser  state=0
-//            HireUserinfo hireUserinfo = new HireUserinfo();
-//            hireUserinfo.setUserid(userinfo.getId());
-//            hireUserinfo.setToyid(toyid);
-//            hireUserinfo.setState(0);
-//            hireUserinfo.setCreatetime(date);
-//            int returnToy = returntoy;
+        //2.验证是否可以归还
+        if (toyid==null || date==null || number==null) {
+            return ResultAjax.fail(-1,"参数有误");
+        }
+        int toyidInt = Integer.parseInt(toyid);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+        int returntoyInt = Integer.parseInt(number);
+        int ret = allService.getHireUser(userinfo.getId(),toyidInt,dateTime);
+        if (ret != returntoyInt) {
+            return ResultAjax.fail(-1,"参数有误");
+        }
+        //3.归还
+        int r = 1;
+        try{
+            //1.玩具增加
+            //需要先获取当前玩具信息
+            Toyinfo toyinfo = toyService.selectToyByIdAll(toyidInt);
+            toyinfo.setInventory(toyinfo.getInventory()+returntoyInt);
+            toyinfo.setId(toyidInt);
+            FutureTask<Integer> addToyById = new FutureTask(()->{
+                return toyService.addToyById(toyinfo);
+            });
+            taskExecutor.submit(addToyById);
+            ret = addToyById.get();
+            if (ret != 1) {
+                return ResultAjax.fail(-1,"归还失败");
+            }
+            //2.hireuser  state=0 归还时间updatetime
+            long timestamp = System.currentTimeMillis();
+            Instant instant = Instant.ofEpochMilli(timestamp);
+            LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+            HireUserinfo hireUserinfo = new HireUserinfo();
+            hireUserinfo.setUserid(userinfo.getId());
+            hireUserinfo.setToyid(toyidInt);
+            hireUserinfo.setState(0);
+            hireUserinfo.setCreatetime(dateTime);
+            hireUserinfo.setUpdatetime(localDateTime);
+            int returnToy = returntoyInt;
 //            for (int i = 0; i < returnToy; i++) {
-//                FutureTask<Integer> updateState = new FutureTask(()->{
-//                    return hireUserService.updateState(hireUserinfo);
-//                });
-//                taskExecutor.submit(updateState);
-//                r = updateState.get();
-//                if(r != 1) {
-//                    //插入失败
-//                    return ResultAjax.fail(-1,"归还失败");
-//                }
+            FutureTask<Integer> updateState = new FutureTask(()->{
+                return hireUserService.updateState(hireUserinfo);
+            });
+            taskExecutor.submit(updateState);
+            r = updateState.get();
+            if(r != returntoyInt) {
+                //插入失败
+                return ResultAjax.fail(-1,"归还失败");
+            }
 //            }
-//            return ResultAjax.succ(1);
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (ret != 1 || r != 1) {
-//                throw new RuntimeException("玩具归还失败");
-//            }
-//        }
-//        return ResultAjax.fail(-1,"参数有误");
-//    }
+            return ResultAjax.succ(1);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (ret != 1 || r != returntoyInt) {
+                System.out.println("ret:  "+ret+"  r:  "+r);
+                throw new RuntimeException("玩具归还失败");
+            }
+        }
+        return ResultAjax.fail(-1,"参数有误");
+    }
 
+    @RequestMapping("/returninit")
+    public ResultAjax returnInit(HttpServletRequest request) {
+        //1.验证是否登录
+        Userinfo userinfo = SessionUtils.getUser(request);
+        if (userinfo == null) {
+            return ResultAjax.fail(-2,"请先登录");
+        }
+        //2.获取数据并返回
+        List<HireUserVO> hireUserVOList = allService.getReturnAllById(userinfo.getId());
+        return ResultAjax.succ(hireUserVOList);
+    }
 }

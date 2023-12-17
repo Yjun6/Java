@@ -6,7 +6,9 @@ function logout() {
             url: "/user/logout",
             type: "post",
             data: {},
-            success: function(res){}
+            success: function(ret){
+
+            }
         });
         //2.跳转到登录页面
         location.href = "login.html";

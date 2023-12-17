@@ -29,4 +29,12 @@ public class AllService {
     public int getHireUser(Integer userid,Integer toyid,LocalDateTime createtime){
         return allMapper.getHireUser(userid,toyid,createtime);
     }
+
+    public List<HireUserVO> getReturnAllById(Integer id){
+        return allMapper.getReturnAllById(id);
+    }
+
+    public     List<HireUserVO> getReturn(){
+        return allMapper.getReturn();
+    }
 }

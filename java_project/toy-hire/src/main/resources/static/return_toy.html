@@ -173,9 +173,9 @@
               createHtml += '<td>' + hiretoy.number + '</td>';
               createHtml += '<td>' + hiretoy.date + '</td>';
               createHtml += '<td>' + hiretoy.latedate + '天</td>';
-              createHtml += '<td><input class="button returntoy" type="number"></input>';
-
-              createHtml += '<button class="button" onclick="returnToy(this)" id="button" data-toyid="' + hiretoy.toyid + '" data-date="' + hiretoy.date + '" min="0">归还</button></td></tr>';
+              // createHtml += '<td><input class="button returntoy" type="number"></input>';
+              createHtml += '<td>';
+              createHtml += '<button class="button" onclick="returnToy(this)" id="button" data-toyid="' + hiretoy.toyid + '" data-date="' + hiretoy.date + '" data-number="'+hiretoy.number+'" min="0">归还</button></td></tr>';
             }
 
             createHtml += "</tbody></table>";
@@ -203,19 +203,20 @@
   function returnToy(button) {
     var toyid = $(button).data('toyid');
     var date = $(button).data('date');
-    var returntoy = $(button).closest('tr').find('.returntoy').val();
+    var number = $(button).data('number');
+    // var returntoy = $(button).closest('tr').find('.returntoy').val();
     console.log("111res");
     console.log("*********************************************");
     console.log(toyid);
     console.log(date);
-    console.log(returntoy);
+    console.log(number);
     jQuery.ajax({
       url: "/user/hirereturn",
       type: "post", //业内规范：查询是get,非查询是post
       data: {
         "toyid": toyid,
         "date": date,
-        "returntoy": returntoy
+        "number": number
       },
       success: function(res) {
         console.log("222");
@@ -232,137 +233,6 @@
         console.log("555");
       }
     });
-
-    // jQuery.ajax({
-    //   url: "/user/hirereturn",
-    //   type: "post",
-    //   // headers: {
-    //   //   'Content-Type': 'application/json'
-    //   // },
-    //   // data: JSON.stringify({
-    //   //   "toyid": toyid,
-    //   //   "date": date,
-    //   //   "returntoy": returntoy
-    //   // }),
-    //   data: {
-    //     "toyid": toyid,
-    //     "date": date,
-    //     "returntoy": returntoy
-    //   },
-    //   success: function(res) {
-    //     console.log("222res");
-    //     if (res.code == 200 && res.data == 1) {
-    //       alert("恭喜：操作成功!" + res.msg);
-    //       location.href = location.href;
-    //     } else if (res.data == -2){
-    //       console.log("444res");
-    //       alert("抱歉：操作失败！" + res.msg);
-    //       location.href = "login.html";
-    //     } else {
-    //       alert("抱歉：操作失败！" + res.msg);
-    //     }
-    //     console.log("555res");
-    //   }
-    // });
   }
 </script>
-
-
-<!-- <script>
-
-  //玩具租聘信息
-  function initHireUser(){
-    console.log("111");
-    jQuery.ajax({
-      url: "/user/hireinit",
-      type: "get", //业内规范：查询是get,非查询是post
-      data: {
-      },
-      success: function(res) {
-        console.log("222");
-        if (res.code==200 && res.data!=null) {
-          console.log("333");
-
-          var createHtml = "";
-          if (res.data!=null && res.data.length>0){
-              console.log("333");
-              //有玩具
-              createHtml = "<h2>玩具租赁信息</h2><table><thead><tr><th>玩具名称</th>";
-              createHtml += "<th>租赁数量</th><th>租赁时间</th><th>距离逾期时间</th><th>操作</th></tr></thead><tbody>";
-              var toy = res.data;
-
-              for(var i=0; i<toy.length; i++) {
-                var hiretoy = toy[i];
-                var inputId = 'returntoy' + i; // 为每个玩具对象创建一个唯一的 ID
-                
-                createHtml += '<tr><td>'+hiretoy.toyname+'</td>';
-                createHtml += '<td>'+hiretoy.number+'</td>';
-                createHtml += '<td>'+hiretoy.date+'</td>';
-                createHtml += '<td>'+hiretoy.latedate+'天</td>';
-                createHtml += '<td><input class="button" type="number" id="'+inputId+'"></input>';
-
-                console.log(jQuery('#'+inputId)); // 检查选择器是否返回了正确的元素
-                console.log(jQuery('#'+inputId).val()); // 检查元素的值是否被正确读取
-
-                var params = {
-                  toyid: hiretoy.toyid,
-                  date: hiretoy.date,
-                  returntoy: jQuery('#'+inputId).val() // 使用新的 ID 获取输入框的值
-                };
-                                
-                createHtml += '<button class="button" onclick="returnToy(\'' + JSON.stringify(params) + '\')" id="button" min="0">归还</button></td></tr>';
-              }
-
-              createHtml += "</tbody></table>";
-              } else {
-              console.log("444");
-              //暂无玩具信息
-              createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无租借信息!</h3>';
-          }
-          jQuery("#initHireUser").html(createHtml);
-
-        } else if (res.data==-2){
-          console.log("444");
-          alert("抱歉：查询失败！"+res.msg);
-          location.href = "login.html";
-        } else {
-          alert("抱歉：查询失败！"+res.msg);
-        }
-        console.log("555");
-      }
-    });
-  }
-  initHireUser();
-
-  //根据玩具 id 归还玩具 toyid,date,returntoy
-  function returnToy(toyData) {
-    var toyid = toyData.toyid;
-    var date = toyData.date;
-    var returntoy = toyData.returntoy;
-    console.log("111");
-    jQuery.ajax({
-      url: "/user/hirereturn",
-      type: "post", //业内规范：查询是get,非查询是post
-      data: {
-        "toyid": toyid,
-        "date": date,
-        "returntoy": returntoy
-      },
-      success: function(res) {
-        console.log("222");
-        if (res.code==200 && res.data==1) {
-          alert("恭喜：操作成功!"+res.msg);
-          location.href = location.href;
-        } else if (res.data==-2){
-          console.log("444");
-          alert("抱歉：操作失败！"+res.msg);
-          location.href = "login.html";
-        } else {
-          alert("抱歉：操作失败！"+res.msg);
-        }
-        console.log("555");
-      }
-    });
-  }
-</script> -->
 </html>

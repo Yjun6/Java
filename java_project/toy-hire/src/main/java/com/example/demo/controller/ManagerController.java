@@ -136,4 +136,18 @@ public class ManagerController {
         //4.返回数据
         return ResultAjax.succ(hireUserVOList);
     }
+
+    // hiretoy.toyname  hiretoy.username hiretoy.number hiretoy.updatetime
+    @RequestMapping("returnInit")
+    public ResultAjax returnInit(HttpServletRequest request) {
+        //1.验证是否登录
+        Managerinfo managerinfo = SessionUtils.getManager(request);
+        if (managerinfo==null) {
+            return ResultAjax.fail(-2,"请先登录");
+        }
+        //2.获取数据
+        List<HireUserVO> list = allService.getReturn();
+        //3.返回数据
+        return ResultAjax.succ(list);
+    }
 }

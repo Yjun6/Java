@@ -2,6 +2,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/logout.js"></script>
   <title>玩具租赁系统 - 用户界面</title>
   <style>
     body {
@@ -19,6 +22,14 @@
     }
 
     nav {
+      position: fixed;
+      left: 10px; /* 距离左侧距离 */
+      bottom: 10px; /* 距离底部距离 */
+    }
+    nav a {
+      text-decoration: none;
+    }
+    nav {
       background-color: #555;
       padding: 10px 0;
       text-align: center;
@@ -27,7 +38,7 @@
     nav a {
       display: inline-block;
       padding: 10px 20px;
-      color: #fff;
+      color: #000;
       text-decoration: none;
       margin: 0 10px;
     }
@@ -70,12 +81,21 @@
       border-radius: 5px;
       text-align: center;
     }
+    nav {
+        background-color: #f2f2f2;
+        padding: 10px;
+        text-align: center;
+        color: #000;
+    }
   </style>
 </head>
 <body>
     <header>
         <h1>玩具租赁系统</h1>
     </header>
+    <nav>
+      <a onclick="logout()">退出登录</a> 
+    </nav>
     <h2>用户界面</h2>
   <div class="container">
     <div class="menu">

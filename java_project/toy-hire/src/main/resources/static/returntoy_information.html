@@ -105,39 +105,8 @@
   <nav>
     <a href="user.html">返回--用户界面</a>
   </nav>
-  <!-- <h2>相关信息</h2> -->
-  <!-- <div class="container">
-    <div class="info-section" id="userinit"> -->
-      <!-- <h2>个人信息</h2>
-      <table>
-        <tr>
-          <th>姓名：</th>
-          <td id="name"></td>
-        </tr>
-        <tr>
-          <th>邮箱：</th>
-          <td id="email"></td>
-        </tr>
-        <tr>
-          <th>电话：</th>
-          <td id="phone"></td>
-        </tr>
-        <tr>
-          <th>地址：</th>
-          <td id="address"></td>
-        </tr>
-        <tr>
-          <th>玩具租金：</th>
-          <td id="cash"></td>
-        </tr>
-        <tr>
-          <th>会员点数：</th>
-          <td id="points"></td>
-        </tr>
-        <td><a href="user_modify.html" class="button">修改个人信息</a></td>
-      </table> -->
-    <!-- </div> -->
-    <div class="info-section">
+  <div class="container">
+    <div class="info-section" id="info-section">
       <!-- <h2>玩具归还信息</h2>
       <table>
         <thead>
@@ -183,43 +152,38 @@
 
           var createHtml = "";
           if (res.data!=null && res.data.length>0){
-              console.log("333");
+              console.log("444");
+              console.log(res.data);
               //有玩具
-        //       <table><thead><tr><th>玩具名称</th><th>租赁时间</th>
-        //     <th>归还时间</th><th>逾期罚金</th></tr></thead>
-        // <tbody>
-        //   <tr><td>小熊玩具</td>
-        //     <td>2023-11-03</td>
-        //     <td>2023-11-23</td>
-        //     <td>0元</td></tr>
-        // </tbody></table>
-              createHtml = "<h2>玩具租赁信息</h2><table><thead><tr><th>玩具名称</th>";
-              createHtml += "<th>租赁数量</th><th>租赁时间</th><th>距离逾期时间</th></tr></thead><tbody>";
+              createHtml = "<h2>玩具归还信息</h2><table><thead><tr><th>玩具名称</th><th>租赁时间</th>";
+              createHtml += "<th>归还时间</th><th>租聘数量</th></tr></thead><tbody>";
               var toy = res.data;
               for(var i=0; i<toy.length; i++) {
                   //循环加入玩具对象
                   var hiretoy = toy[i]; // 对象
+                  console.log(hiretoy);
                   createHtml += '<tr><td>'+hiretoy.toyname+'</td>';
-                  createHtml += '<td>'+hiretoy.number+'</td>';
-                  createHtml += '<td>'+hiretoy.date+'</td>';
-                  createHtml += '<td>'+hiretoy.latedate+'天</td></tr>';
+                  createHtml += '<td>'+hiretoy.createtime+'</td>';
+                  createHtml += '<td>'+hiretoy.updatetime+'</td>';
+                  createHtml += '<td>'+hiretoy.number+'</td></tr>';
               }
               createHtml += "</tbody></table>";
-              } else {
-              console.log("444");
-              //暂无玩具信息
-              createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无租借信息!</h3>';
+          } else {
+          console.log("555");
+          //暂无玩具信息
+          createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无归还信息!</h3>';
           }
-          jQuery("#initHireUser").html(createHtml);
+          console.log(createHtml);
+          jQuery("#info-section").html(createHtml);
 
         } else if (res.data==-2){
-          console.log("444");
+          console.log("666");
           alert("抱歉：查询失败！"+res.msg);
           location.href = "login.html";
         } else {
           alert("抱歉：查询失败！"+res.msg);
         }
-        console.log("555");
+        console.log("777");
       }
     });
   }

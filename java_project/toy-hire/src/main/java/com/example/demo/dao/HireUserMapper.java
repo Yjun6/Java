@@ -11,11 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface HireUserMapper {
-//    private Integer userid;
-//    private Integer toyid;
-//    private LocalDateTime createtime;
-//    private LocalDateTime updatetime;
-//    private int state;
     @Insert("insert into hireuser(userid,toyid,createtime,state) " +
             "values(#{userid},#{toyid},#{createtime},#{state})")
     public int insertHireUser(HireUserinfo hireUser);
@@ -23,6 +18,7 @@ public interface HireUserMapper {
    @Select("select * from hireuser where state=1")
     List<HireUserinfo> getHireUserAll();
 
-    @Update("update hireuser set state=#{state} where userid=#{userid} and toyid=#{toyid} and createtime=#{createtime} and state=1")
+    @Update("update hireuser set state=#{state},updatetime=#{updatetime}" +
+            "where userid=#{userid} and toyid=#{toyid} and createtime=#{createtime} and state=1")
     int updateState(HireUserinfo hireUserinfo);
 }
