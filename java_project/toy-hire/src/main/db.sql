@@ -39,10 +39,10 @@ create table manager (
 -- 玩具信息录入
 --玩具： 编号  姓名 类型 价格 库存
 CREATE TABLE toy (
-	id	int primary key auto_increment,
+	id int PRIMARY key auto_increment,
 	name VARCHAR(255) unique,
-	situation	CHAR(255),
-	price	INT,
+	situation CHAR(255),
+	price INT,
 	inventory int,
 	createtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 创建时间
     updatetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 修改时间
