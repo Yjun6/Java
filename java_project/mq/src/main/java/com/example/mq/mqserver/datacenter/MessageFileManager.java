@@ -1,5 +1,8 @@
 package com.example.mq.mqserver.datacenter;
 
+import java.io.*;
+import java.util.Scanner;
+
 /**
  * 消息管理
  */
@@ -25,5 +28,34 @@ public class MessageFileManager {
     //获取保存消息的偏移量的目录
     private String getQueueStatPath(String queueName) {
         return getQueueDir(queueName) + "/queue_stat.txt";
+    }
+
+    //读消息统计文件
+    private Stat readStat(String queueName) {
+        Stat stat = new Stat();
+        try (InputStream inputStream = new FileInputStream(getQueueStatPath(queueName))){
+            Scanner scanner = new Scanner(inputStream);
+            stat.totalCount = scanner.nextInt();
+            stat.validCount = scanner.nextInt();
+            return stat;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //写消息统计文件
+    private void writeStat(String queueName, Stat stat) {
+        try(OutputStream outputStream = new FileOutputStream(getQueueStatPath(queueName))) {
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.write(stat.totalCount+"\t"+stat.validCount);
+            printWriter.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
