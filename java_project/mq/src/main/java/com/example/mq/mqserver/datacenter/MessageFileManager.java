@@ -58,4 +58,61 @@ public class MessageFileManager {
             e.printStackTrace();
         }
     }
+
+    //创建队列的目录和文件
+    public void createQueue(String queueName) throws IOException {
+        File file = new File(getQueueDir(queueName));
+        if(!file.exists()) {
+            boolean ret = file.mkdir();
+            if (!ret) {
+                //没有创建成功
+                throw new IOException(queueName+"目录创建失败");
+            }
+        }
+        //1.创建队列数据文件
+        File queueDateFile = new File(getQueuePath(queueName));
+        if (!queueDateFile.exists()) {
+            boolean ok = queueDateFile.createNewFile();
+            if (!ok) {
+                throw new IOException("创建文件失败！queueDateFile="+queueDateFile.getAbsolutePath());
+            }
+        }
+        //2.创建消息统计文件
+        File queueStatFile = new File(getQueueStatPath(queueName));
+        if (!queueStatFile.exists()) {
+            boolean ok = queueStatFile.createNewFile();
+            if (!ok) {
+                throw new IOException("创建文件失败！queueDataFile="+queueStatFile.getAbsolutePath());
+            }
+        }
+        //3.默认的消息统计文件数值
+        Stat stat = new Stat();
+        stat.validCount = 0;
+        stat.totalCount = 0;
+        writeStat(queueName,stat);
+    }
+
+    //删除队列的目录和文件
+    //先删文件，再删统计文件 再是目录
+    public void destroyQueueFiles(String queueName) throws IOException {
+        File queueDateFile = new File(getQueuePath(queueName));
+        boolean ok1 = queueDateFile.delete();
+        File queueStatFile = new File(getQueueStatPath(queueName));
+        boolean ok2 = queueStatFile.delete();
+        File queue = new File(getQueueDir(queueName));
+        boolean ok3 = queue.delete();
+        if (!(ok1 && ok2 && ok3)) {
+            throw new IOException("队列文件删除失败！ queueDir="+getQueueDir(queueName));
+        }
+    }
+
+    //检测队列的目录和文件是否存在
+    public boolean existQueue(String queueName) {
+        File queueStatFile = new File(getQueueStatPath(queueName));
+        File queueDateFile = new File(getQueuePath(queueName));
+        if (queueDateFile.exists() || queueStatFile.exists()) {
+            return true;
+        }
+        return false;
+    }
 }
