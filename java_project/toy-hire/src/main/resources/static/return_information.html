@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/urlutils.js"></script>
+    <title>玩具租赁信息</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        .rental-info {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>玩具归还信息</h1>
+    </header>
+    <nav>
+        <a href="admin.html">返回--管理员界面</a>
+    </nav>
+    <section id="rental-info">
+        <!-- <h2>归还信息</h2>
+        <div class="rental-info">
+            <h3>玩具名称：小熊玩具</h3>
+            <p>归还人：张三</p>
+            <p>归还日期：2023-11-23</p>
+            <p>逾期金额: 0元</p>
+        </div> -->
+        <!-- <div class="rental-info">
+            <h3>玩具名称：飞机模型</h3>
+            <p>归还人：张三</p>
+            <p>归还日期：2023-12-08</p>
+            <p>逾期金额: 4元</p>
+        </div>
+        <div class="rental-info">
+            <h3>玩具名称：儿童乐高积木</h3>
+            <p>归还人：李四</p>
+            <p>归还日期：2023-12-09</p>
+            <p>逾期金额: 14元</p>
+        </div> -->
+    </section>
+</body>
+<script>
+
+    function init() {
+        jQuery.ajax({
+            url: "/manager/returnInit",
+            type: "get", //业内规范：查询是get,非查询是post
+            data: {
+            },
+            success: function(res) {
+                console.log("111");
+                //3.将后端返回数据展示给用户
+                if (res.code==200 && res.data!=null) {
+                    console.log(res);
+                    //展示列表
+                    var createHtml = "";
+                    if (res.data!=null && res.data.length>0){
+                        console.log("333");
+                        //有玩具
+                        createHtml += "<h2>归还信息</h2>";
+                        var toy = res.data;
+                        for(var i=0; i<toy.length; i++) {
+                            //循环加入玩具对象
+                            var hiretoy = toy[i]; // 对象
+                            createHtml += '<div class="rental-info"><h3>玩具名称：'+hiretoy.toyname+'</h3>';
+                            createHtml += '<p>归还人：'+hiretoy.username+'</p>';
+                            createHtml += '<p>归还数量：'+hiretoy.number+'</p>';
+                            createHtml += '<p>归还日期：'+hiretoy.updatetime+'</p></div>';
+                        }
+                        } else {
+                        console.log("444");
+                        //暂无玩具信息
+                        createHtml += '<h3 style="margin-top:20px;margin-left:20px;">暂无归还信息!</h3>';
+                    }
+                    jQuery("#rental-info").html(createHtml);
+                } else {
+                    alert("抱歉：查询失败！"+res.msg);
+                    location.href = "login.html";
+                } 
+            }
+        });
+    }
+    init();
+</script>
+</html>
