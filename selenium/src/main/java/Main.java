@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main1(String[] args) throws InterruptedException {
 //        test01();
 //        test02();
 //        test03();
@@ -24,14 +24,59 @@ public class Main {
 //        test2();
 //        test3();
 //        test4();
-        test5();
+//        test5();
+//        test6();
+        test7();
     }
 
-    private static void test5() {
+    private static void test7() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         WebDriver webDriver = new ChromeDriver(options);
-        webDriver.get("");
+        webDriver.get("file:///D:/Documents/code/Java/selenium/src/main/resources/static/test05.html");
+      //关闭浏览器
+        //清空缓存
+        webDriver.quit();
+        //不会清空缓存
+//        webDriver.close();
+
+    }
+
+    //测试上传文件
+    private static void test6() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        WebDriver webDriver = new ChromeDriver(options);
+        webDriver.get("file:///D:/Documents/code/Java/selenium/src/main/resources/static/test05.html");
+        webDriver.findElement(By.cssSelector("body > input[type=file]")).sendKeys("D:\\Documents\\Desktop\\book\\课件\\6.测试课件");
+    }
+
+    //alert 弹窗的验证
+    private static void test5() throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        WebDriver driver = new ChromeDriver(options);
+        driver.get("file:///D:/Documents/code/Java/selenium/src/main/resources/static/test04.html");
+        driver.findElement(By.cssSelector("body > button")).click();
+        Thread.sleep(3000);
+        //取消弹窗
+        driver.switchTo().alert().dismiss();
+        Thread.sleep(2000);
+        //再次打开弹窗  输入内容
+        driver.findElement(By.cssSelector("body > button")).click();
+        driver.switchTo().alert().sendKeys("邹雨洁");
+        //点击确认 发送内容到页面上
+        driver.switchTo().alert().accept();
+        //验证内容
+        Thread.sleep(2000);
+        WebElement element = driver.findElement(By.xpath("//div[last()]"));
+        System.out.println(element.getText());
+        element.getText();
+        if("邹雨洁".equals(element.getText())){
+            System.out.println("匹配成功");
+        } else {
+            System.out.println("内容不正确，输出的是：" + element.getText());
+        }
     }
 
     private static void test4() {
